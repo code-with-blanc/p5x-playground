@@ -1,8 +1,10 @@
+import Sketch from "./sketch";
+
 export const INITIAL_STATE = {
-  sketches: [],
+  sketches: [] as Sketch[],
 };
 
-const reducer = (state = INITIAL_STATE, action = {type: 'DEFAULT'}) => {
+const reducer = (state = INITIAL_STATE, action: any = {type: 'DEFAULT'}) => {
   switch(action.type) {
     case 'ADD_SKETCH':
       return {
