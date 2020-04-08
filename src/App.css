@@ -1,7 +1,7 @@
 .App {
   box-sizing: border-box;
 
-  background-color: #282c34;
+  background-color: #1C2326;
 
   width: 100vw;
   height: 100vh;
@@ -14,13 +14,13 @@
 .sidebar {
   grid-area: sidebar;
 
-  background-color: #666972;
-  border-left: solid #7a92c2 3px;
+  background-color: #1C2326;
+  border-left: solid #ACD7EC 3px;
 }
 
 .main-content {
   grid-area: main;
 
-  background-color: #282c34;
+  background-color: #1C2326;
 }
 

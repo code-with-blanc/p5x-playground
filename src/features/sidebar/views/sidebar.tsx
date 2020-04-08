@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+
 import { Sketch } from '../types/sketch';
 
 interface SidebarProps {
@@ -21,14 +23,17 @@ const Sidebar = ({
       ))}
 
       <div style={{padding: "10px"}}>
-        <button onClick={() => {
-          addSketch({
-            id: 0,
-            name: 'New Sketch'
-          });
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={() => {
+            addSketch({
+              id: 0,
+              name: 'New Sketch'
+            });
         }}>
           Add
-        </button>
+        </Button>
       </div>
     </div>
 );
