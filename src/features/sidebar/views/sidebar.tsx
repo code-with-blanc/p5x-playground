@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 
 import { Sketch } from '../types/sketch';
+import Fab from '../../../common/fab/fab';
 
 interface SidebarProps {
   className: string;
@@ -34,6 +35,10 @@ const Sidebar = ({
         }}>
           Add
         </Button>
+      </div>
+
+      <div style={{padding: "10px"}}>
+        <Fab />
       </div>
     </div>
 );
