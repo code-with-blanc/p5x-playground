@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import configureStore from './redux/store';
-import Sidebar from './features/sidebar';
+import Sidebar from './features/sidebar/views';
 
 import './App.css';
 

@@ -29,8 +29,6 @@ const Name = styled.div`
 `;
 
 const sketchRow = (props : SketchRowProps) => {
-  console.log(props);
-
   return (
     <Container>
       <Name>{props.sketch.name}</Name>

@@ -5,26 +5,22 @@ import { Fab } from '../../../common/';
 
 import SketchRow from './SketchRow';
 
-const newSketch : Sketch = {
-  id: 1234,
-  name: 'New Sketch',
-};
 
 interface SidebarProps {
   className: string;
   sketches: Sketch[];
-  addSketch: (arg0: Sketch) => void;
+  addSketch: () => void;
 }
 
 const Sidebar = (props: SidebarProps) => (
   <div className={props.className}>
     {props.sketches.map((s, i) => (
-      <SketchRow sketch={s} />
+      <SketchRow sketch={s} key={i} />
     ))}
 
     <div style={{padding: "10px"}}>
       <Fab
-        onClick={() => { props.addSketch(newSketch); }}
+        onClick={() => { props.addSketch(); }}
       />
     </div>
   </div>

@@ -1,4 +1,4 @@
-import React, { EventHandler } from 'react'
+import React from 'react'
 
 import { withTheme, Theme } from '@material-ui/core';
 import styled from 'styled-components';
