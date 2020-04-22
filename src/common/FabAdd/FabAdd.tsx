@@ -1,12 +1,7 @@
-import React from 'react'
+import React, { EventHandler } from 'react'
 
 import { withTheme, Theme } from '@material-ui/core';
 import styled from 'styled-components';
-
-interface FabProps {
-  className?: string;
-  theme?: Theme;
-}
 
 const resetButtonStyle = `
   background: none;
@@ -73,14 +68,20 @@ const Icon = styled.div`
   }
 `;
 
-const FabAdd = ({ className, theme } : FabProps) => {
+const FabAdd = ({ className, theme, onClick } : FabProps) => {
   const color = theme?.palette?.primary?.main || 'blue';
 
   return (
-    <Border className={className} color={color}>
+    <Border className={className} color={color} onClick={onClick}>
       <Icon color={color}>+</Icon>
     </Border>
   )
 };
+
+interface FabProps {
+  className?: string;
+  theme?: Theme;
+  onClick?: () => any;
+}
 
 export default withTheme(FabAdd);

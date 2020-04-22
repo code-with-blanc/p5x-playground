@@ -3,6 +3,13 @@ import React from 'react';
 import { Sketch } from '../types/sketch';
 import { Fab } from '../../../common/';
 
+import SketchRow from './SketchRow';
+
+const newSketch : Sketch = {
+  id: 1234,
+  name: 'New Sketch',
+};
+
 interface SidebarProps {
   className: string;
   sketches: Sketch[];
@@ -12,13 +19,13 @@ interface SidebarProps {
 const Sidebar = (props: SidebarProps) => (
   <div className={props.className}>
     {props.sketches.map((s, i) => (
-      <div key={i}>
-        {s.name}
-      </div>
+      <SketchRow sketch={s} />
     ))}
 
     <div style={{padding: "10px"}}>
-      <Fab />
+      <Fab
+        onClick={() => { props.addSketch(newSketch); }}
+      />
     </div>
   </div>
 );
