@@ -12,6 +12,8 @@ const Container = withTheme(styled.div`
   width: 100%;
   min-height: 48px;
 
+  color: white;
+
   background-color: ${ props => props.theme.palette.action.active };
 
   :hover {
@@ -28,12 +30,20 @@ const Name = styled.div`
   font-weight: 500;
 `;
 
-const sketchRow = (props : SketchRowProps) => {
-  return (
-    <Container>
-      <Name>{props.sketch.name}</Name>
-    </Container>
-  )
-};
+class SketchRow extends React.Component<SketchRowProps> {
+  renderCount : number = 0;
 
-export default sketchRow;
+  render() {
+    this.renderCount += 1;
+
+    return (
+      <Container>
+        <Name>{this.props.sketch.name}</Name>
+        Rendered { this.renderCount } times
+      </Container>
+    )
+  };
+
+}
+
+export default SketchRow;
