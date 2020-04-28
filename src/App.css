@@ -7,20 +7,29 @@
   height: 100vh;
   
   display: grid;
-  grid-template-columns: 1fr max(300px,20%);
-  grid-template-areas: "main sidebar";
+  grid-template-rows: 48px 1fr;
+  grid-template-columns: 1fr max(300px, 20%);
+  grid-template-areas:
+    "toolbar toolbar"
+    "editor sidebar";
+}
+
+.toolbar {
+  grid-area: toolbar;
+
+  border-bottom: solid #ACD7EC 2px;
+}
+
+.editor {
+  grid-area: main;
+
+  background-color: #1C2326;
 }
 
 .sidebar {
   grid-area: sidebar;
 
   background-color: #1C2326;
-  border-left: solid #ACD7EC 3px;
-}
-
-.main-content {
-  grid-area: main;
-
-  background-color: #1C2326;
+  border-left: solid #ACD7EC 2px;
 }
 

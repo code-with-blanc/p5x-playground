@@ -1,4 +1,4 @@
-import { SidebarState } from "../types/sidebarState";
+import { SidebarState } from "./sidebarState";
 import {
   SidebarActionTypes,
   ADD_SKETCH, REMOVE_SKETCH,

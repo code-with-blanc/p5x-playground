@@ -3,7 +3,9 @@ import { Provider } from 'react-redux';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import configureStore from './redux/store';
-import Sidebar from './features/sidebar/views';
+
+import Sidebar from './features/sidebar';
+import Toolbar from './features/toolbar';
 
 import './App.css';
 
@@ -34,8 +36,8 @@ function App() {
     <Provider store={configureStore()}>
       <ThemeProvider theme={theme}>
         <div className="App">
-          <div className="main-content">
-          </div>
+          <Toolbar className="toolbar" />
+          <div className="editor" />
           <Sidebar className="sidebar" />
         </div>
       </ThemeProvider>

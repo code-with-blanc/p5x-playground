@@ -1,20 +1,13 @@
 import React from 'react';
 
-import { Sketch } from '../types/sketch';
-import { Fab } from '../../../common/';
+import { Sketch } from '../../../../types/sketch';
+import { Fab } from '../../../../common';
 
-import SketchRow from './SketchRow';
-
-
-interface SidebarProps {
-  className: string;
-  sketches: Sketch[];
-  addSketch: () => void;
-}
+import SketchRow from '../SketchRow';
 
 const Sidebar = (props: SidebarProps) => (
   <div className={props.className}>
-    {props.sketches.map((s, i) => (
+    {props.sketches?.map((s, i) => (
       <SketchRow sketch={s} key={i} />
     ))}
 
@@ -25,5 +18,11 @@ const Sidebar = (props: SidebarProps) => (
     </div>
   </div>
 );
+
+interface SidebarProps {
+  className: string;
+  sketches: Sketch[];
+  addSketch: () => void;
+}
 
 export default Sidebar;

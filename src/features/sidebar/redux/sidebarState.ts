@@ -1,4 +1,4 @@
-import { Sketch } from "./sketch";
+import { Sketch } from "../../../types/sketch";
 
 export interface SidebarState {
   sketches: Sketch[];

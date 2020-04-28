@@ -1,8 +1,8 @@
 import React from 'react'
-
-import { Sketch } from '../../types/sketch';
 import styled from 'styled-components';
 import { withTheme } from '@material-ui/core/styles';
+
+import { Sketch } from '../../../../types/sketch';
 
 interface SketchRowProps {
   sketch: Sketch;
@@ -17,7 +17,7 @@ const Container = withTheme(styled.div`
   background-color: ${ props => props.theme.palette.action.active };
 
   :hover {
-    background-color: ${ props => props.theme.palette.action.hover};
+    background-color: ${ props => props.theme.palette.action.hover };
   }
 `);
 
