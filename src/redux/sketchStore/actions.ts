@@ -1,4 +1,4 @@
-import { Sketch } from "../../../types/sketch";
+import { Sketch } from "../../types/sketch";
 
 // Types
 export const ADD_SKETCH = 'sidebar/ADD_SKETCH';

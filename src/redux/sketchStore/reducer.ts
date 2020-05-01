@@ -1,15 +1,15 @@
-import { SidebarState } from "./sidebarState";
+import { SketchStoreState } from "./sketchStoreState";
 import {
   SidebarActionTypes,
   ADD_SKETCH, REMOVE_SKETCH,
 } from "./actions";
 
-export const INITIAL_STATE: SidebarState = {
+export const INITIAL_STATE: SketchStoreState = {
   sketches: [],
   selectedSketchId: null,
 };
 
-const reducer = (state = INITIAL_STATE,action: SidebarActionTypes): SidebarState => {
+const reducer = (state = INITIAL_STATE,action: SidebarActionTypes): SketchStoreState => {
   switch(action.type) {
     case ADD_SKETCH:
       return {

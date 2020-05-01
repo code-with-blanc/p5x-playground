@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Sidebar from './sidebar';
-import { newSketch } from '../../redux/operations';
+import { newSketch } from '../../../../redux/sketchStore/operations';
 
 const mapStateToProps = ({ sidebarStore }) => ({
   sketches: sidebarStore.sketches,
