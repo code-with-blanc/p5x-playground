@@ -1,11 +1,13 @@
 .App {
   box-sizing: border-box;
 
-  background-color: #1C2326;
+  background-color: black;
 
   width: 100vw;
   height: 100vh;
-  
+  overflow-x: hidden;
+  overflow-y: hidden;
+
   display: grid;
   grid-template-rows: 48px 1fr;
   grid-template-columns: 1fr max(300px, 20%);
@@ -22,14 +24,11 @@
 
 .editor {
   grid-area: main;
-
-  background-color: #1C2326;
 }
 
 .sidebar {
   grid-area: sidebar;
 
-  background-color: #1C2326;
   border-left: solid #ACD7EC 2px;
 }
 

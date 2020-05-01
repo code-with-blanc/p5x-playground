@@ -1,17 +1,16 @@
 import React from 'react'
 import styled from 'styled-components';
-import { withTheme } from '@material-ui/core';
 
 import { Sketch } from '../../../../repository/sketch';
 
-const Container = withTheme(styled.div`
+const Container = styled.div`
   width: 100%;
-  background-color: ${ props => props.theme.palette.background };
+  background-color: ${ props => props.theme.palette.background.default };
 
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
-`);
+`;
 
 const Title = styled.div`
   padding-left: 10px;
@@ -24,7 +23,7 @@ const Title = styled.div`
 
 const Toolbar = (props: ToolbarProps) => {
   return (
-    <Container className={props?.className}>
+    <Container className={props.className}>
       <Title> { props.sketch?.name || "Sketch Name" } </Title>
     </Container>
   )
