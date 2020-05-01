@@ -1,7 +1,7 @@
 import { SketchStoreState } from "./sketchStoreState";
 import {
   SidebarActionTypes,
-  ADD_SKETCH, REMOVE_SKETCH,
+  ADD_SKETCH, REMOVE_SKETCH, SET_SELECTED,
 } from "./actions";
 
 export const INITIAL_STATE: SketchStoreState = {
@@ -20,6 +20,11 @@ const reducer = (state = INITIAL_STATE,action: SidebarActionTypes): SketchStoreS
       return {
         ...state,
         sketches: state.sketches.filter(s => s.id !== action.payload)
+      }
+    case SET_SELECTED:
+      return {
+        ...state,
+        selectedSketchId: action.payload,
       }
     default:
       return state;

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import * as Sidebar from './sketchStore';
+import * as Sketch from './sketchStore';
 
 export default combineReducers({
-    sidebarStore: Sidebar.reducer,
+    sketchStore: Sketch.reducer,
 });

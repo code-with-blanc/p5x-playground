@@ -1,11 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import { Sketch } from '../../../../repository/sketch';
 import { FabAdd } from '../../../../common';
 
-import SketchRow from '../SketchRow';
-
-import styled from 'styled-components';
+import SketchList from '../sketchList';
 
 const Container = styled.div`
   position: relative;
@@ -16,40 +14,27 @@ const Container = styled.div`
 
   .fab {
     position: absolute;
-    bottom: 40px;
-    right: 20px;
+    bottom: 48px;
+    right: 36px;
     
     padding: 10px;
   }
 `;
 
-const ListContainer = styled.div`
-  height: 100%;
-  overflow-y: auto;
-`;
-
 const Sidebar = (props: SidebarProps) => (
   <Container className={props.className}>
-    {/* TODO: create list component, use mui paper API */}
-    <ListContainer>
-      <div>
-        {props.sketches?.map((s, i) => (
-          <SketchRow sketch={s} key={i} />
-        ))}
-      </div>
-    </ListContainer>
+    <SketchList />
 
-      <FabAdd
-        className="fab"
-        size = 'small'
-        onClick={ () => props.addSketch() }
-      />
+    <FabAdd
+      className="fab"
+      size = 'small'
+      onClick={ () => props.addSketch() }
+    />
   </Container>
 );
 
 interface SidebarProps {
   className: string;
-  sketches: Sketch[];
   addSketch: () => void;
 }
 

@@ -3,6 +3,7 @@ import { Sketch } from "../../repository/sketch";
 // Types
 export const ADD_SKETCH = 'sidebar/ADD_SKETCH';
 export const REMOVE_SKETCH = 'sidebar/REMOVE_SKETCH';
+export const SET_SELECTED = 'sidebar/SET_SELECTED';
 
 export interface AddSketchAction {
   type: typeof ADD_SKETCH;
@@ -14,7 +15,12 @@ export interface RemoveSketchAction {
   payload: number;
 }
 
-export type SidebarActionTypes = AddSketchAction | RemoveSketchAction;
+export interface SetSelectedSketchIdAction {
+  type: typeof SET_SELECTED;
+  payload: number;
+}
+
+export type SidebarActionTypes = AddSketchAction | RemoveSketchAction | SetSelectedSketchIdAction;
 
 // Action Creators
 export const addSketch = (newSketch: Sketch) : AddSketchAction => {
@@ -25,8 +31,15 @@ export const addSketch = (newSketch: Sketch) : AddSketchAction => {
 };
 
 export const removeSketch = (id: number) : RemoveSketchAction => {
-  return { 
+  return {
     type: REMOVE_SKETCH,
+    payload: id,
+  }
+}
+
+export const setSelectedSketchId = (id: number) : SetSelectedSketchIdAction => {
+  return {
+    type: SET_SELECTED,
     payload: id,
   }
 }
