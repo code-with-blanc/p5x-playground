@@ -1,6 +1,6 @@
 import * as Actions from './actions';
 
-import { Sketch } from '../../types/sketch';
+import { Sketch } from '../../repository/sketch';
 
 export const newSketch = (dispatch : Function) => () => {
 const templateSketch : Sketch = {

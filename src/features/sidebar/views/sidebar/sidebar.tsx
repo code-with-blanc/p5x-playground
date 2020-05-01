@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Sketch } from '../../../../types/sketch';
+import { Sketch } from '../../../../repository/sketch';
 import { Fab } from '../../../../common';
 
 import SketchRow from '../SketchRow';

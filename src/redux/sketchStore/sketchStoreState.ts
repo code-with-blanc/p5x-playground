@@ -1,4 +1,4 @@
-import { Sketch } from "../../types/sketch";
+import { Sketch } from "../../repository/sketch";
 
 export interface SketchStoreState {
   sketches: Sketch[];

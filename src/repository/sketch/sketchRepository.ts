@@ -1,4 +1,4 @@
-import { Sketch } from "../../types/sketch";
+import { Sketch } from "./sketch";
 
 class SketchRepository {
   sketches : Sketch [];

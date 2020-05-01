@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import { withTheme } from '@material-ui/core/styles';
 
-import { Sketch } from '../../../../types/sketch';
+import { Sketch } from '../../../../repository/sketch';
 
 interface SketchRowProps {
   sketch: Sketch;

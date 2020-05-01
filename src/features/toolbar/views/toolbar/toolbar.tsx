@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
-import { withTheme } from '@material-ui/core/styles';
+import { withTheme } from '@material-ui/core';
 
-import { Sketch } from '../../../../types/sketch';
+import { Sketch } from '../../../../repository/sketch';
 
 const Container = withTheme(styled.div`
   width: 100%;
@@ -13,14 +13,14 @@ const Container = withTheme(styled.div`
   align-items: center;
 `);
 
-const Title = withTheme(styled.div`
+const Title = styled.div`
   padding-left: 10px;
   padding-right: 10px;
   
   font-size: 1.5em;
   font-weight: 500;
   color: white;
-`);
+`;
 
 const Toolbar = (props: ToolbarProps) => {
   return (
