@@ -12,6 +12,7 @@ const muiTheme = createMuiTheme({
     success: { main: '#98CE5A' },
     background: {
       default: blueGrey[900],
+      paper: blueGrey[700],
     },
   }
 });
