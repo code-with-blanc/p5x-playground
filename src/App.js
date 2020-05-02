@@ -8,6 +8,7 @@ import Sidebar from './features/sidebar';
 import Toolbar from './features/toolbar';
 
 import './App.css';
+import Editor from './features/editor';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       <ThemeProvider>
         <div className="App">
           <Toolbar className="toolbar" />
-          <div className="editor" />
+          
+          <Editor className="editor"/>
           <Sidebar className="sidebar" />
         </div>
       </ThemeProvider>

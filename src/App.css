@@ -23,7 +23,7 @@
 }
 
 .editor {
-  grid-area: main;
+  grid-area: editor;
 }
 
 .sidebar {
