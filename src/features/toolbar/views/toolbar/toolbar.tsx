@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
 
-import { Sketch } from '../../../../repository/sketch';
-
 const Container = styled.div`
   width: 100%;
   background-color: ${ props => props.theme.palette.background.default };
@@ -13,10 +11,9 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 8px;
   
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 500;
   color: white;
 `;
@@ -24,14 +21,14 @@ const Title = styled.div`
 const Toolbar = (props: ToolbarProps) => {
   return (
     <Container className={props.className}>
-      <Title> { props.sketch?.name || "Sketch Name" } </Title>
+      <Title> { props?.name } </Title>
     </Container>
   )
 }
 
 interface ToolbarProps {
   className?: string;
-  sketch: Sketch;
+  name?: string;
 } 
 
 export default Toolbar;
