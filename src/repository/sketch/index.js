@@ -1,4 +1,4 @@
-import Sketch from './sketch';
+import { Sketch } from './sketch';
 import SketchRepository from './sketchRepository';
 
 export { Sketch };

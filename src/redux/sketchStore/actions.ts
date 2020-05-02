@@ -1,9 +1,15 @@
 import { Sketch } from "../../repository/sketch";
 
 // Types
-export const ADD_SKETCH = 'sidebar/ADD_SKETCH';
-export const REMOVE_SKETCH = 'sidebar/REMOVE_SKETCH';
-export const SET_SELECTED = 'sidebar/SET_SELECTED';
+export const SET_SKETCHES = 'sketches/SET_SKETCHES';
+export const ADD_SKETCH = 'sketches/ADD_SKETCH';
+export const REMOVE_SKETCH = 'sketches/REMOVE_SKETCH';
+export const SET_SELECTED = 'sketches/SET_SELECTED';
+
+export interface SetSketchesAction {
+  type: typeof SET_SKETCHES;
+  payload: Sketch[];
+}
 
 export interface AddSketchAction {
   type: typeof ADD_SKETCH;
@@ -20,9 +26,18 @@ export interface SetSelectedSketchIdAction {
   payload: number;
 }
 
-export type SidebarActionTypes = AddSketchAction | RemoveSketchAction | SetSelectedSketchIdAction;
+export type SidebarActionTypes = 
+  AddSketchAction | RemoveSketchAction | SetSelectedSketchIdAction | SetSketchesAction;
 
-// Action Creators
+/// Action Creators
+
+export const setSketches = (sketches: Sketch []) : SetSketchesAction => {
+  return {
+    type: SET_SKETCHES,
+    payload: sketches,
+  }
+}
+
 export const addSketch = (newSketch: Sketch) : AddSketchAction => {
   return {
     type: ADD_SKETCH,

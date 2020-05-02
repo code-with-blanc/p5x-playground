@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
 
 import Sidebar from './sidebar';
-import { newSketch } from '../../../../redux/sketchStore/operations';
+import * as Operations from '../../../../redux/sketchStore/operations';
 
 const mapStateToProps = ({ sketchStore }) => ({
   sketches: sketchStore.sketches,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addSketch: newSketch(dispatch)
+  addSketch: Operations.newSketch(dispatch),
+  getSketches: Operations.getSketches(dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

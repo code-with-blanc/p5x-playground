@@ -1,16 +1,18 @@
 import * as Actions from './actions';
 
-import { Sketch } from '../../repository/sketch';
+import Repository from '../../repository/sketch';
 
-let count = 0;
+export const getSketches = (dispatch: Function) => () => {
+  const sketches = Repository.getAll();
+
+  dispatch(Actions.setSketches(sketches));
+}
 
 export const newSketch = (dispatch : Function) => () => {
-  const templateSketch : Sketch = {
-    id: count++,
-    name: `New Sketch (${count})`,
-  }
+  Repository.create();
+  const sketches = Repository.getAll()
 
-  dispatch(Actions.addSketch(templateSketch));
+  dispatch(Actions.setSketches(sketches));
 };
 
 export const setSelectedSketch = (dispatch: Function) => (id: number) => {

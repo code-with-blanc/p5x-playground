@@ -1,34 +1,34 @@
 import { Sketch } from "./sketch";
 
+let _sketches : Sketch[] = [
+  {
+    id: 0,
+    name: "Tutorial",
+    code: "// TODO: write a tutorial",
+  },
+  {
+    id: 1,
+    name: "My Sketch 1",
+    code: "// Write your code here",
+  }
+];
+;
+
 class SketchRepository {
-  sketches : Sketch [];
-  
-  constructor() {
-    this.sketches = [
-      {
-        id: 0,
-        name: "My Sketch 1"
-      },
-      {
-        id: 1,
-        name: "My Sketch 2"
-      }
-    ];
+  public static getAll() : Sketch [] {
+    return [ ..._sketches ];
   }
 
-  getAll() : Sketch [] {
-    return this.sketches; 
-  }
-
-  create(name: string) : number {
-    const maxId = this.sketches.reduce((prevMax, sketch) => {
+  public static create() : number {
+    const maxId = _sketches.reduce((prevMax, sketch) => {
       return (sketch.id > prevMax) ? sketch.id : prevMax;
     }, 0);
     const id = maxId + 1;
 
-    this.sketches.push({
+    _sketches.push({
       id: id,
-      name: "New Sketch"
+      name: `New Sketch (${id})`,
+      code: '',
     })
 
     return id;

@@ -21,21 +21,35 @@ const Container = styled.div`
   }
 `;
 
-const Sidebar = (props: SidebarProps) => (
-  <Container className={props.className}>
-    <SketchList />
+class Sidebar extends React.Component {
+  props: SidebarProps;
+  
+  constructor(props: SidebarProps) {
+    super(props);
+    this.props = props;
 
-    <FabAdd
-      className="fab"
-      size = 'small'
-      onClick={ () => props.addSketch() }
-    />
-  </Container>
-);
+    this.props.getSketches();
+  }
+
+  render() {
+    return (
+      <Container className={this.props.className}>
+        <SketchList />
+
+        <FabAdd
+          className="fab"
+          size="small"
+          onClick={ () => this.props.addSketch() }
+        />
+      </Container>
+    );
+  }
+}
 
 interface SidebarProps {
   className: string;
   addSketch: () => void;
+  getSketches: () => void;
 }
 
 export default Sidebar;
