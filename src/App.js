@@ -4,11 +4,11 @@ import ThemeProvider from './themes/ThemeProvider';
 
 import configureStore from './redux/store';
 
-import Sidebar from './features/sidebar';
 import Toolbar from './features/toolbar';
+import Sidebar from './features/sidebar';
+import Editor from './features/editor';
 
 import './App.css';
-import Editor from './features/editor';
 
 function App() {
   return (

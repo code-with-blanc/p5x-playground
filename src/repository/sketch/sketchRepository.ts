@@ -12,7 +12,6 @@ let _sketches : Sketch[] = [
     code: "// Write your code here",
   }
 ];
-;
 
 class SketchRepository {
   public static getAll() : Sketch [] {
@@ -32,6 +31,18 @@ class SketchRepository {
     })
 
     return id;
+  }
+
+
+  static _listener : Function | null = null;
+  public static subscribe(fn: (sketch: Sketch) => void) {
+    SketchRepository._listener = fn;
+    SketchRepository._listener?.call(null, _sketches[0]);
+  }
+
+  public static updateCode(code: string) {
+    _sketches[0].code = code;
+    SketchRepository._listener?.call(null, _sketches[0]);
   }
 }
 
