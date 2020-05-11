@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 
-import MySimpleEditor from './mySimpleEditor/mySimpleEditor';
+// import MySimpleEditor from './mySimpleEditor/mySimpleEditor';
 import { withSketch, InjectedSketchProps } from '../../repository/sketch/sketchProvider';
 
 interface EditorProps extends InjectedSketchProps {
@@ -21,9 +21,6 @@ class Editor extends Component<EditorProps> {
   }
   
   render() {
-    console.log(this)
-    console.log(this.props)
-
     return (
       <Div className={this.props.className}>
         {/* <MySimpleEditor
