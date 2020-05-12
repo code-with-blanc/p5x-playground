@@ -19,9 +19,8 @@ jobs:
       run: npm install
     - name: Build page
       run: npm run build
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@3.4.9
+    - name: Deploy to gh-pages
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        ACCESS_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        BRANCH: gh-pages
-        FOLDER: build
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_dir: ./build 
