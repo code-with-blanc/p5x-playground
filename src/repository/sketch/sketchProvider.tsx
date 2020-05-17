@@ -36,7 +36,6 @@ class MakeCounter extends React.Component<P, State> {
   }
 
   render() {
-    console.log(this.state.sketch)
     return (
       <Component
         count={++count}

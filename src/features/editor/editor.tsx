@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 
-// import MySimpleEditor from './mySimpleEditor/mySimpleEditor';
+import CustomSimpleEditor from './customSimpleEditor/CustomSimpleEditor';
 import { withSketch, InjectedSketchProps } from '../../repository/sketch/sketchProvider';
 
 interface EditorProps extends InjectedSketchProps {
@@ -14,19 +14,15 @@ const Div = styled.div`
 `;
 
 class Editor extends Component<EditorProps> {
-  props: EditorProps = {
-    count: -99,
-    sketch: { id: 42, name: '', code: 'init'},
-    setCode: () => {},
-  }
-  
   render() {
     return (
       <Div className={this.props.className}>
-        {/* <MySimpleEditor
+        <CustomSimpleEditor
           value = {this.props?.sketch?.code}
-          onValueChange = {(value) => { this.props.setCode(value) }}
-        /> */}
+          onValueChange = {(value) => { 
+            console.log(`will set value: ${value}`)
+            this.props.setCode(value) }}
+        />
       </Div>
     )
   }

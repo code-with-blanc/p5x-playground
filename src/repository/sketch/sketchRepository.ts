@@ -42,6 +42,7 @@ class SketchRepository {
 
   public static updateCode(code: string) {
     _sketches[0].code = code;
+    console.log(`will call listener with ${_sketches[0].code}`);
     SketchRepository._listener?.call(null, _sketches[0]);
   }
 }
