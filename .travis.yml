@@ -12,5 +12,8 @@ deploy:
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   keep_history: true
+  local_dir: ./build
+  repo: pedroblanc/pedroblanc.github.io
+  target_branch: master
   on:
     branch: master
