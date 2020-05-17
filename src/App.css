@@ -1,0 +1,34 @@
+.App {
+  box-sizing: border-box;
+
+  background-color: black;
+
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  display: grid;
+  grid-template-rows: 48px 1fr;
+  grid-template-columns: 1fr max(300px, 20%);
+  grid-template-areas:
+    "toolbar toolbar"
+    "editor sidebar";
+}
+
+.toolbar {
+  grid-area: toolbar;
+
+  border-bottom: solid #ACD7EC 2px;
+}
+
+.editor {
+  grid-area: editor;
+}
+
+.sidebar {
+  grid-area: sidebar;
+
+  border-left: solid #ACD7EC 2px;
+}
+

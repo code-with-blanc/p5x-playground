@@ -1,0 +1,46 @@
+{
+  "name": "p5x-playground",
+  "homepage": "/p5x-playground",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.9.9",
+    "@material-ui/icons": "^4.9.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/deep-freeze": "^0.1.2",
+    "@types/jest": "^25.2.1",
+    "@types/prismjs": "^1.16.0",
+    "@types/react-redux": "^7.1.7",
+    "@types/styled-components": "^5.1.0",
+    "deep-freeze": "0.0.1",
+    "prismjs": "^1.20.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-redux": "^7.2.0",
+    "react-scripts": "3.4.0",
+    "react-simple-code-editor": "^0.11.0",
+    "redux": "^4.0.5",
+    "styled-components": "^5.1.0",
+    "typescript": "^3.8.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
