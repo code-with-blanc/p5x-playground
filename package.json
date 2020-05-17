@@ -1,6 +1,6 @@
 {
   "name": "p5x-playground",
-  "homepage": "/p5x-playground",
+  "homepage": "/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
