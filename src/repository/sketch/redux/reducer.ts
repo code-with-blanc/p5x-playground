@@ -1,15 +1,17 @@
 import { SketchStoreState } from "./sketchStoreState";
 import {
-  SidebarActionTypes,
-  ADD_SKETCH, REMOVE_SKETCH, SET_SELECTED, SET_SKETCHES,
+  SketchActionTypes,
+  ADD_SKETCH, REMOVE_SKETCH, SET_ACTIVE, SET_SKETCHES,
 } from "./actions";
 
+import Repository from '..';
+
 export const INITIAL_STATE: SketchStoreState = {
-  sketches: [],
-  selectedSketchId: null,
+  sketches: Repository.getAll(),
+  activeSketchId: null,
 };
 
-const reducer = (state = INITIAL_STATE, action: SidebarActionTypes): SketchStoreState => {
+const reducer = (state = INITIAL_STATE, action: SketchActionTypes): SketchStoreState => {
   switch(action.type) {
     case SET_SKETCHES:
       return {
@@ -26,10 +28,10 @@ const reducer = (state = INITIAL_STATE, action: SidebarActionTypes): SketchStore
         ...state,
         sketches: state.sketches.filter(s => s.id !== action.payload)
       }
-    case SET_SELECTED:
+    case SET_ACTIVE:
       return {
         ...state,
-        selectedSketchId: action.payload,
+        activeSketchId: action.payload,
       }
     default:
       return state;

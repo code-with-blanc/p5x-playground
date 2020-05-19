@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import SketchList from './sketchList';
 
-import { setSelectedSketch } from '../../../../redux/sketchStore/operations';
+import { Operations } from '../../../../repository/sketch/redux';
 
 const mapStateToProps = ({ sketchStore }) => ({
   sketches: sketchStore.sketches,
@@ -10,7 +10,7 @@ const mapStateToProps = ({ sketchStore }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setSelected: (id) => setSelectedSketch(dispatch)(id),
+  setSelected: (id) => Operations.setActiveSketch(dispatch)(id),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SketchList);

@@ -33,17 +33,8 @@ class SketchRepository {
     return id;
   }
 
-
-  static _listener : Function | null = null;
-  public static subscribe(fn: (sketch: Sketch) => void) {
-    SketchRepository._listener = fn;
-    SketchRepository._listener?.call(null, _sketches[0]);
-  }
-
-  public static updateCode(code: string) {
-    _sketches[0].code = code;
-    console.log(`will call listener with ${_sketches[0].code}`);
-    SketchRepository._listener?.call(null, _sketches[0]);
+  public static updateCode(id: number, code: string) {
+    _sketches[id].code = code;
   }
 }
 

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import * as Sketch from './sketchStore';
+import sketchReducer from '../repository/sketch/redux';
 
 export default combineReducers({
-    sketchStore: Sketch.reducer,
+    sketchStore: sketchReducer,
 });

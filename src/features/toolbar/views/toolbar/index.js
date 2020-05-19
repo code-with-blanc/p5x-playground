@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 
-import * as Selectors from '../../../../redux/sketchStore/selectors';
+import { Selectors } from '../../../../repository/sketch/redux';
 
 import Toolbar from './toolbar';
 
 const mapStateToProps = ({sketchStore}) => ({
-  name: Selectors.currentSketch(sketchStore)?.name,
+  name: Selectors.activeSketch(sketchStore)?.name,
 });
 
 export default connect(mapStateToProps)(Toolbar);

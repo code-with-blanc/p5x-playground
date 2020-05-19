@@ -1,15 +1,10 @@
-import { Sketch } from "../../repository/sketch";
+import { Sketch } from "..";
 
 // Types
 export const SET_SKETCHES = 'sketches/SET_SKETCHES';
 export const ADD_SKETCH = 'sketches/ADD_SKETCH';
 export const REMOVE_SKETCH = 'sketches/REMOVE_SKETCH';
-export const SET_SELECTED = 'sketches/SET_SELECTED';
-
-export interface SetSketchesAction {
-  type: typeof SET_SKETCHES;
-  payload: Sketch[];
-}
+export const SET_ACTIVE = 'sketches/SET_ACTIVE';
 
 export interface AddSketchAction {
   type: typeof ADD_SKETCH;
@@ -21,16 +16,22 @@ export interface RemoveSketchAction {
   payload: number;
 }
 
-export interface SetSelectedSketchIdAction {
-  type: typeof SET_SELECTED;
+export interface SetActiveSketchIdAction {
+  type: typeof SET_ACTIVE;
   payload: number;
 }
 
-export type SidebarActionTypes = 
-  AddSketchAction | RemoveSketchAction | SetSelectedSketchIdAction | SetSketchesAction;
+export interface SetSketchesAction {
+  type: typeof SET_SKETCHES;
+  payload: Sketch[];
+}
+
+
+export type SketchActionTypes = 
+  AddSketchAction | RemoveSketchAction | SetActiveSketchIdAction | SetSketchesAction;
+
 
 /// Action Creators
-
 export const setSketches = (sketches: Sketch []) : SetSketchesAction => {
   return {
     type: SET_SKETCHES,
@@ -52,9 +53,9 @@ export const removeSketch = (id: number) : RemoveSketchAction => {
   }
 }
 
-export const setSelectedSketchId = (id: number) : SetSelectedSketchIdAction => {
+export const setActiveSketchId = (id: number) : SetActiveSketchIdAction => {
   return {
-    type: SET_SELECTED,
+    type: SET_ACTIVE,
     payload: id,
   }
 }

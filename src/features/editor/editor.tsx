@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import styled from 'styled-components';
 
 import CustomSimpleEditor from './customSimpleEditor/CustomSimpleEditor';
-import { withSketch, InjectedSketchProps } from '../../repository/sketch/sketchProvider';
+import { Sketch } from '../../repository/sketch';
 
-interface EditorProps extends InjectedSketchProps {
+interface EditorProps {
   className?: string;
   count?: number;
+  sketch?: Sketch;
+  setCode: (id: number, value: string) => void;
 }
 
 const Div = styled.div`
@@ -19,13 +21,14 @@ class Editor extends Component<EditorProps> {
       <Div className={this.props.className}>
         <CustomSimpleEditor
           value = {this.props?.sketch?.code}
-          onValueChange = {(value) => { 
-            console.log(`will set value: ${value}`)
-            this.props.setCode(value) }}
+          onValueChange = {(value) => {
+            console.log(`Should set value: ${value}`)
+            // this.props.setCode(this.props.sketch?.id || -1, value) }}
+          }}
         />
       </Div>
     )
   }
 }
 
-export default withSketch(Editor);
+export default Editor;

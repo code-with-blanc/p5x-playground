@@ -1,6 +1,6 @@
 import * as Actions from './actions';
 
-import Repository from '../../repository/sketch';
+import Repository from '..';
 
 export const getSketches = (dispatch: Function) => () => {
   const sketches = Repository.getAll();
@@ -15,6 +15,6 @@ export const newSketch = (dispatch : Function) => () => {
   dispatch(Actions.setSketches(sketches));
 };
 
-export const setSelectedSketch = (dispatch: Function) => (id: number) => {
-  dispatch(Actions.setSelectedSketchId(id));
+export const setActiveSketch = (dispatch: Function) => (id: number) => {
+  dispatch(Actions.setActiveSketchId(id));
 }

@@ -10,7 +10,7 @@ import './prism.css';
 
 
 interface CustomSimpleEditorProps {
-  value: string;
+  value?: string;
   onValueChange: (value: string) => void;
 }
 

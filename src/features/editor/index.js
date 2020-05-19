@@ -1,12 +1,11 @@
 import { connect } from 'react-redux';
 
-import * as Selectors from '../../redux/sketchStore/selectors';
-import * as Operations from '../../redux/sketchStore/operations';
+import { Selectors, Operations } from '../../repository/sketch/redux';
 
 import Editor from './editor';
 
 const mapStateToProps = ({ sketchStore }) => ({
-  sketch: Selectors.currentSketch(sketchStore),
+  sketch: Selectors.activeSketch(sketchStore),
 });
 
 const mapDispatchToProps = (dispatch) => ({
