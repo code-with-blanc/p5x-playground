@@ -17,7 +17,7 @@ interface CustomSimpleEditorProps {
 export const CustomSimpleEditor = (props: CustomSimpleEditorProps) => {
   return (
     <ReactSimpleCodeEditor
-      value={props.value || "// undefined"}
+      value={props.value || ''}
       onValueChange={props.onValueChange}
       highlight={highlight}
       padding={10}

@@ -9,7 +9,7 @@ const mapStateToProps = ({ sketchStore }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getSketches: Operations.getSketches(dispatch),
+  updateCode: Operations.updateCode(dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Editor);

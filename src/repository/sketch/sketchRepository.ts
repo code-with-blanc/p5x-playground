@@ -2,14 +2,14 @@ import { Sketch } from "./sketch";
 
 let _sketches : Sketch[] = [
   {
-    id: 0,
+    id: 1,
     name: "Tutorial",
     code: "// TODO: write a tutorial",
-  },
+    },
   {
-    id: 1,
-    name: "My Sketch 1",
-    code: "// Write your code here",
+    id: 2,
+    name: "Hello World",
+    code: "console.log('Hello world!');",
   }
 ];
 

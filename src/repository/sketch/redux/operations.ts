@@ -15,6 +15,10 @@ export const newSketch = (dispatch : Function) => () => {
   dispatch(Actions.setSketches(sketches));
 };
 
+export const updateCode = (dispatch: Function) => (id: number, code: string) => {
+  dispatch(Actions.updateCode(id, code))
+};
+
 export const setActiveSketch = (dispatch: Function) => (id: number) => {
   dispatch(Actions.setActiveSketchId(id));
-}
+};

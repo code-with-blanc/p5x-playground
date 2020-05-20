@@ -8,7 +8,7 @@ interface EditorProps {
   className?: string;
   count?: number;
   sketch?: Sketch;
-  setCode: (id: number, value: string) => void;
+  updateCode: (id: number, value: string) => void;
 }
 
 const Div = styled.div`
@@ -22,8 +22,10 @@ class Editor extends Component<EditorProps> {
         <CustomSimpleEditor
           value = {this.props?.sketch?.code}
           onValueChange = {(value) => {
-            console.log(`Should set value: ${value}`)
-            // this.props.setCode(this.props.sketch?.id || -1, value) }}
+            let id = this.props.sketch?.id;
+            if(id) {
+              this.props.updateCode(id, value);
+            }
           }}
         />
       </Div>
