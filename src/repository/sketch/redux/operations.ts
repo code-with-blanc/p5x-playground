@@ -9,10 +9,8 @@ export const getSketches = (dispatch: Function) => () => {
 }
 
 export const newSketch = (dispatch : Function) => () => {
-  Repository.create();
-  const sketches = Repository.getAll()
-
-  dispatch(Actions.setSketches(sketches));
+  throw new Error("repository cant create sketch yet");
+  // dispatch(Actions.setSketches(sketches));
 };
 
 export const updateCode = (dispatch: Function) => (id: number, code: string) => {

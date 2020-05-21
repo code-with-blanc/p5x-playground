@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import ThemeProvider from './themes/ThemeProvider';
 
-import configureStore from './redux/store';
+import ThemeProvider from './setup/themes/ThemeProvider';
+import store from './setup/redux/store';
 
 import Toolbar from './features/toolbar';
 import Sidebar from './features/sidebar';
@@ -12,7 +12,7 @@ import './App.css';
 
 function App() {
   return (
-    <Provider store={configureStore()}>
+    <Provider store={store}>
       <ThemeProvider>
         <div className="App">
           <Toolbar className="toolbar" />

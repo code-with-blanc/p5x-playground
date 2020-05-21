@@ -1,6 +1,33 @@
 import { Sketch } from "./sketch";
+import { Store } from "redux";
 
-let _sketches : Sketch[] = [
+const LS_STORAGE = 'sketches';
+
+class SketchRepository {
+  public static subscribe(store: Store) {
+    store.subscribe(() => {
+      const { sketchStore } = store.getState();
+      if(sketchStore) {
+        SketchRepository.onStoreUpdate(sketchStore);
+      }
+    })
+  }
+
+  public static getAll() : Sketch [] {
+    const stored = localStorage.getItem(LS_STORAGE);
+    if(stored) {
+      return JSON.parse(stored) || defaultSketches;
+    }
+
+    return defaultSketches;
+  }
+
+  private static onStoreUpdate(state : any) {
+    localStorage.setItem(LS_STORAGE, JSON.stringify(state.sketches));
+  }
+}
+
+const defaultSketches : Sketch[] = [
   {
     id: 1,
     name: "Tutorial",
@@ -12,30 +39,5 @@ let _sketches : Sketch[] = [
     code: "console.log('Hello world!');",
   }
 ];
-
-class SketchRepository {
-  public static getAll() : Sketch [] {
-    return [ ..._sketches ];
-  }
-
-  public static create() : number {
-    const maxId = _sketches.reduce((prevMax, sketch) => {
-      return (sketch.id > prevMax) ? sketch.id : prevMax;
-    }, 0);
-    const id = maxId + 1;
-
-    _sketches.push({
-      id: id,
-      name: `New Sketch (${id})`,
-      code: '',
-    })
-
-    return id;
-  }
-
-  public static updateCode(id: number, code: string) {
-    _sketches[id].code = code;
-  }
-}
 
 export default SketchRepository;
