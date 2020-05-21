@@ -9,7 +9,6 @@ const mapStateToProps = ({ sketchStore }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addSketch: Operations.newSketch(dispatch),
-  getSketches: Operations.getSketches(dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

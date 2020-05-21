@@ -4,7 +4,11 @@ import { Store } from "redux";
 const LS_STORAGE = 'sketches';
 
 class SketchRepository {
+  private static store : Store;
+
   public static subscribe(store: Store) {
+    SketchRepository.store = store;
+
     store.subscribe(() => {
       const { sketchStore } = store.getState();
       if(sketchStore) {
@@ -13,7 +17,18 @@ class SketchRepository {
     })
   }
 
-  public static getAll() : Sketch [] {
+  public static getNewSketch() : Sketch {
+    const existingSketches : Array<Sketch> = SketchRepository.store?.getState()?.sketchStore?.sketches || []; 
+    const max = existingSketches.reduce((max, s) => ( s.id > max ? s.id : max), 0);
+  
+    return {
+      id: max + 1,
+      name: `Sketch (${max+1})`,
+      code: '',
+    };
+  }
+
+  public static load() : Sketch [] {
     const stored = localStorage.getItem(LS_STORAGE);
     if(stored) {
       return JSON.parse(stored) || defaultSketches;

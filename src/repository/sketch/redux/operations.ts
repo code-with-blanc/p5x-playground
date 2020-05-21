@@ -2,15 +2,9 @@ import * as Actions from './actions';
 
 import Repository from '..';
 
-export const getSketches = (dispatch: Function) => () => {
-  const sketches = Repository.getAll();
-
-  dispatch(Actions.setSketches(sketches));
-}
-
 export const newSketch = (dispatch : Function) => () => {
-  throw new Error("repository cant create sketch yet");
-  // dispatch(Actions.setSketches(sketches));
+  const sketch = Repository.getNewSketch();
+  dispatch(Actions.addSketch(sketch));
 };
 
 export const updateCode = (dispatch: Function) => (id: number, code: string) => {

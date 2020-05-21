@@ -27,8 +27,6 @@ class Sidebar extends React.Component {
   constructor(props: SidebarProps) {
     super(props);
     this.props = props;
-
-    this.props.getSketches();
   }
 
   render() {
@@ -49,7 +47,6 @@ class Sidebar extends React.Component {
 interface SidebarProps {
   className: string;
   addSketch: () => void;
-  getSketches: () => void;
 }
 
 export default Sidebar;

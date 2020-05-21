@@ -7,7 +7,7 @@ import {
 import Repository from '..';
 
 const getInitialState = () => {
-  const sketches = Repository.getAll() || [{}];
+  const sketches = Repository.load() || [{}];
 
   return {
     sketches: sketches,
