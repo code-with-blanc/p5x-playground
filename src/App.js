@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import ThemeProvider from './setup/themes/ThemeProvider';
 import store from './setup/redux/store';
 
-import Toolbar from './features/toolbar';
+import AppBar from './features/appbar';
 import Sidebar from './features/sidebar';
 import Editor from './features/editor';
 
@@ -15,7 +15,7 @@ function App() {
     <Provider store={store}>
       <ThemeProvider>
         <div className="App">
-          <Toolbar className="toolbar" />
+          <AppBar className="appbar" />
           
           <Editor className="editor"/>
           <Sidebar className="sidebar" />

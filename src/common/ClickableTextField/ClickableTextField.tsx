@@ -2,13 +2,57 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import InputBase from '@material-ui/core/InputBase';
 
+export const ClickableTextField : React.FC<Props> = ({
+  className, defaultValue, value:controlledValue, onChange, onFocus, onBlur,
+}) => {
+  const inputRef = React.useRef<HTMLInputElement>();
+  const [uncontrolledValue, setUncontrolledValue] = useState<string|null>(null);
+  const [hasFocus, setFocus] = useState(false);
+
+  return (
+    <Container
+      className={className}
+      onClick={() => inputRef?.current?.focus()}
+    >
+      <InputBase
+        inputRef={inputRef}
+        fullWidth
+
+        value={
+          hasFocus
+            ? controlledValue ?? uncontrolledValue
+            : (controlledValue ?? uncontrolledValue) || defaultValue            
+        }
+
+        onFocus={() => {
+          setFocus(true)
+          if(onFocus) { onFocus() };
+        }}
+        onBlur={() => {
+          setFocus(false)
+          if(onBlur) { onBlur() };  
+        }}
+        onChange={(event) => {
+          const isControlled = (controlledValue !== undefined && controlledValue !== null);
+          if(isControlled) {
+            setUncontrolledValue(null);
+          } else {
+            setUncontrolledValue(event.target.value);
+          }
+
+          if(onChange) { onChange(event.target.value); }
+        }}
+      />
+    </Container>
+  )
+}
+
 const Container = styled('div')`
   border-radius: 5px;
 
   padding-left: 0.5em;
   padding-right: 0.5em;
 
-  cursor: default;
   input {
     cursor: default;
   }
@@ -25,55 +69,12 @@ const Container = styled('div')`
   }
 `;
 
-export const ClickableTextField : React.FC<Props> = ({
-  className, defaultValue, value, onChange,
-}) => {
-  const [uncontrolledValue, setUncontrolledValue] = useState('');
-  const [hasFocus, setFocus] = useState(false);
-  const inputRef = React.useRef<HTMLInputElement>();
-
-  const isControlled = value !== undefined && value !== null;
-
-  return (
-    <Container
-      className={className}
-      onClick={() => inputRef?.current?.focus()}
-    >
-      <InputBase
-        inputRef={inputRef}
-        fullWidth
-
-        value={
-          isControlled ? (
-            hasFocus
-              ? value
-              : value || defaultValue            
-          ) : (
-            hasFocus
-              ? uncontrolledValue
-              : uncontrolledValue || defaultValue
-          )
-        }
-
-        onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
-        onChange={(event) => {
-          if(!isControlled) {
-            setUncontrolledValue(event.target.value);
-          }
-          if(onChange) {
-            onChange(event.target.value);
-          }
-        }}
-      />
-    </Container>
-  )
-}
-
 interface Props {
   className?: string;
   label?: string;
   defaultValue?: string;
   value?: string;
   onChange?: ((value: string) => void) | (() => void);
+  onFocus?: () => void;
+  onBlur?: () => void;
 }

@@ -1,7 +1,7 @@
 import { SketchStoreState } from "./sketchStoreState";
 import {
   SketchAction,
-  ADD_SKETCH, REMOVE_SKETCH, SET_ACTIVE, SET_SKETCHES, PATCH_SKETCH,
+  ADD_SKETCH, REMOVE_SKETCH, SET_ACTIVE, SET_SKETCHES, PATCH_SKETCH, UPDATE_SKETCH,
 } from "./actions";
 
 import Repository from '..';
@@ -33,6 +33,16 @@ const reducer = (state = INITIAL_STATE, action: SketchAction<any>): SketchStoreS
       return {
         ...state,
         sketches: state.sketches.filter(s => s.id !== action.payload)
+      }
+    case UPDATE_SKETCH:
+      return {
+        ...state,
+        sketches: state.sketches.map((s) => {
+          if(s.id === action.payload?.id) {
+            return Object.assign({}, action.payload);
+          }
+          return s;
+        })
       }
     case SET_ACTIVE:
       return {
