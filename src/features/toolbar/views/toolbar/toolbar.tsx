@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import { ClickableTextField } from '../../../../common/ClickableTextField/ClickableTextField';
 
@@ -11,23 +11,37 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Title = styled.div`
-  padding: 8px;
-  
-  font-size: 1.2em;
-  font-weight: 500;
-  color: white;
+const HalfWidth = styled.div`
+  width: 50%;
 `;
 
 const Toolbar = (props: ToolbarProps) => {
+  const [value, setValue] = useState('');
+  
   return (
     <Container className={props.className}>
+      <HalfWidth>
       <ClickableTextField
-        defaultValue = {props.name}
+        defaultValue="uncontrolled"
         onChange={(value) => {
           console.log(value);
         }}
       />
+      </HalfWidth>
+
+      <HalfWidth>
+      <ClickableTextField
+        defaultValue="controlled: (default)"
+        value = {value}
+        onChange={( value) => {
+          if(value.length < 12) {
+            setValue("controlled: " + value);
+          } else {
+            setValue(value);
+          }
+        }}
+      />
+      </HalfWidth>
     </Container>
   )
 }

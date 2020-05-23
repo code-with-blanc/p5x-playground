@@ -1,14 +1,6 @@
-// should
-//    - hihghlight on hover
-//    - focus when clicked
-//    - unfocus when finish editing (click outside, esc, tab)
-
-import React, { useState, InputHTMLAttributes } from 'react'
+import React, { useState } from 'react';
 import styled from 'styled-components';
-
-import { TextField } from '@material-ui/core'
 import InputBase from '@material-ui/core/InputBase';
-
 
 const Container = styled('div')`
   border-radius: 5px;
@@ -16,20 +8,31 @@ const Container = styled('div')`
   padding-left: 0.5em;
   padding-right: 0.5em;
 
+  cursor: default;
+  input {
+    cursor: default;
+  }
+
   :hover {
     background-color: ${({theme}) => theme.palette.button.hover};
   }
   :focus-within {
     background-color: ${({theme}) => theme.palette.button.hover};
+    cursor: text;
+    input {
+      cursor: text;
+    }
   }
 `;
 
 export const ClickableTextField : React.FC<Props> = ({
-  className, defaultValue, onChange,
+  className, defaultValue, value, onChange,
 }) => {
-  const [value, setValue] = useState('');
+  const [uncontrolledValue, setUncontrolledValue] = useState('');
   const [hasFocus, setFocus] = useState(false);
   const inputRef = React.useRef<HTMLInputElement>();
+
+  const isControlled = value !== undefined && value !== null;
 
   return (
     <Container
@@ -37,17 +40,27 @@ export const ClickableTextField : React.FC<Props> = ({
       onClick={() => inputRef?.current?.focus()}
     >
       <InputBase
-        value={
-          hasFocus
-           ? value
-           : value || defaultValue
-        }
         inputRef={inputRef}
+        fullWidth
+
+        value={
+          isControlled ? (
+            hasFocus
+              ? value
+              : value || defaultValue            
+          ) : (
+            hasFocus
+              ? uncontrolledValue
+              : uncontrolledValue || defaultValue
+          )
+        }
+
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
-
         onChange={(event) => {
-          setValue(event.target.value);
+          if(!isControlled) {
+            setUncontrolledValue(event.target.value);
+          }
           if(onChange) {
             onChange(event.target.value);
           }
@@ -61,5 +74,6 @@ interface Props {
   className?: string;
   label?: string;
   defaultValue?: string;
-  onChange?: (value: string) => void;
+  value?: string;
+  onChange?: ((value: string) => void) | (() => void);
 }
