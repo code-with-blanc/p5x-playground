@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import { ClickableTextField } from '../../../../common/ClickableTextField/ClickableTextField';
 
 const Container = styled.div`
   width: 100%;
@@ -21,7 +22,12 @@ const Title = styled.div`
 const Toolbar = (props: ToolbarProps) => {
   return (
     <Container className={props.className}>
-      <Title> { props?.name } </Title>
+      <ClickableTextField
+        defaultValue = {props.name}
+        onChange={(value) => {
+          console.log(value);
+        }}
+      />
     </Container>
   )
 }

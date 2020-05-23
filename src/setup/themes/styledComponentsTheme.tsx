@@ -9,6 +9,10 @@ const theme = {
     list: {
       background: muiTheme.palette.background.default,
       hover: muiTheme.palette.background.paper,
+    },
+
+    button: {
+      hover: muiTheme.palette.background.paper,
     }
   }
 };
