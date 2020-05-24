@@ -7,8 +7,8 @@ const AppBar = (props: AppbarProps) => {
   const [originalName, setOriginalName] = useState<string | undefined>('');
 
   const updateName = (name?: string) => {
-    if(props.sketch && name) {
-      const newSketch = Object.assign(props.sketch, { name });
+    if(props.sketch) {
+      const newSketch = Object.assign(props.sketch, { name: name ?? '' });
       props.updateSketch(newSketch);
     }
   }
