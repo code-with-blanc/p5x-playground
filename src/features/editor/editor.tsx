@@ -13,6 +13,8 @@ interface EditorProps {
 
 const Div = styled.div`
   background-color: ${ props => props.theme.palette.background.default };
+  height: 100%;
+  overflow-y: auto;
 `;
 
 class Editor extends Component<EditorProps> {

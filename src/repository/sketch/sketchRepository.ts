@@ -1,6 +1,8 @@
 import { Sketch } from "./sketch";
 import { Store } from "redux";
 
+import defaultSketches from './defaultSketches.js';
+
 const LS_STORAGE = 'sketches';
 
 class SketchRepository {
@@ -41,18 +43,5 @@ class SketchRepository {
     localStorage.setItem(LS_STORAGE, JSON.stringify(state.sketches));
   }
 }
-
-const defaultSketches : Sketch[] = [
-  {
-    id: 1,
-    name: "Tutorial",
-    code: "// TODO: write a tutorial",
-    },
-  {
-    id: 2,
-    name: "Hello World",
-    code: "console.log('Hello world!');",
-  }
-];
 
 export default SketchRepository;
