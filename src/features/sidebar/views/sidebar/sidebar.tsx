@@ -9,22 +9,6 @@ import Button from '../../../../common/Button/Button';
 
 import SketchList from '../sketchList';
 
-const Container = styled.div`
-  position: relative;
-  height: 100%;
-  overflow-y: hidden;
-
-  background-color: ${ props => props.theme.palette.background.default };
-
-  .fab {
-    position: absolute;
-    bottom: 48px;
-    right: 36px;
-    
-    padding: 10px;
-  }
-`;
-
 class Sidebar extends React.Component {
   props: SidebarProps;
   
@@ -36,34 +20,63 @@ class Sidebar extends React.Component {
   render() {
     return (
       <Container className={this.props.className}>
+        <SketchList className="list"/>
+      
         <Button
+          className="button-add"
           color="green"
-          onClick={() => console.log('add')}
+          onClick={this.props.addSketch}
         >
           <IconAdd />
         </Button>
 
         <Button
+          className="button-delete"
           color="Red"
+          onClick={() => this.props.removeSketch(this.props.activeSketchId)}
         >
           <IconDelete/>
         </Button>
-
-        <SketchList />
-
-        <FabAdd
-          className="fab"
-          size="small"
-          onClick={ () => this.props.addSketch() }
-        />
       </Container>
     );
   }
 }
 
+const Container = styled.div`
+  position: relative;
+  height: 100%;
+  overflow-y: hidden;
+
+  background-color: ${ props => props.theme.palette.background.default };
+
+  display: grid;
+  grid-template-rows: 1fr 64px;
+  grid-template-columns: 70% 30%;
+  grid-template-areas:
+    "list list"
+    "add delete";
+
+
+  & .list {
+    grid-area: list;
+  }
+
+  & .button-add {
+    grid-area: add;
+    margin: 12px 6px;
+  }
+
+  & .button-delete {
+    grid-area: delete;
+    margin: 12px 6px;
+  }
+`;
+
 interface SidebarProps {
   className: string;
+  activeSketchId: number;
   addSketch: () => void;
+  removeSketch: (id: number) => void;
 }
 
 export default Sidebar;

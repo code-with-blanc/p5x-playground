@@ -6,7 +6,7 @@ import { Operations } from '../../../../repository/sketch/redux';
 
 const mapStateToProps = ({ sketchStore }) => ({
   sketches: sketchStore.sketches,
-  selectedSketchId: sketchStore.selectedSketchId,
+  selectedSketchId: sketchStore.activeSketchId,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -58,10 +58,10 @@ const Container = styled('div')`
   }
 
   :hover {
-    background-color: ${({theme}) => theme.palette.button.hover};
+    background-color: ${({theme}) => theme.palette.background.paper};
   }
   :focus-within {
-    background-color: ${({theme}) => theme.palette.button.hover};
+    background-color: ${({theme}) => theme.palette.background.paper};
     cursor: text;
     input {
       cursor: text;

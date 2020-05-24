@@ -7,6 +7,10 @@ export const newSketch = (dispatch : Function) => () => {
   dispatch(Actions.addSketch(sketch));
 };
 
+export const removeSketch = (dispatch: Function) => (id: number) => {
+  dispatch(Actions.removeSketch(id));
+}
+
 export const updateCode = (dispatch: Function) => (id: number, code: string) => {
   dispatch(Actions.updateCode(id, code));
 };

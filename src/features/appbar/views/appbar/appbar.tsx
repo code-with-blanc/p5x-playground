@@ -4,24 +4,25 @@ import { ClickableTextField } from '../../../../common/ClickableTextField/Clicka
 import { Sketch } from '../../../../repository/sketch';
 
 const AppBar = (props: AppbarProps) => {
-  const [originalName, setOriginalName] = useState('');
+  const [originalName, setOriginalName] = useState<string | undefined>('');
 
-  const updateName = (name: string) => {
-    const newSketch = Object.assign(props.sketch, { name });
-    props.updateSketch(newSketch);
+  const updateName = (name?: string) => {
+    if(props.sketch && name) {
+      const newSketch = Object.assign(props.sketch, { name });
+      props.updateSketch(newSketch);
+    }
   }
 
   return (
     <Container className={props.className}>
       <ClickableTextField
-        className={props.sketch.name.toUpperCase()}
         defaultValue={originalName}
-        value = {props.sketch.name}
+        value = {props.sketch?.name}
         onFocus = {() => {
-          setOriginalName(props.sketch.name);
+          setOriginalName(props.sketch?.name);
         }}
         onBlur = {() => {
-          if(!props.sketch?.name) {
+          if(!props.sketch?.name && originalName  ) {
             updateName(originalName);
           }
         }}
@@ -44,7 +45,7 @@ const Container = styled.div`
 
 interface AppbarProps {
   className?: string;
-  sketch: Sketch;
+  sketch?: Sketch;
   updateSketch: (sketch: Sketch) => void;
 } 
 
