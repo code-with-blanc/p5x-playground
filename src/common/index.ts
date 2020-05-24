@@ -1,5 +1,5 @@
-import FabAdd from './FabAdd/FabAdd';
+import Button from './Button/Button';
 
 export { 
-  FabAdd,
+  Button,
 };

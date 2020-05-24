@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import IconDelete from '@material-ui/icons/Delete';
 import IconAdd from '@material-ui/icons/Add';
 
-import { FabAdd } from '../../../../common';
 import Button from '../../../../common/Button/Button';
 
 import SketchList from '../sketchList';
