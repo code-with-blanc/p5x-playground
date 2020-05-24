@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import IconDelete from '@material-ui/icons/Delete';
+import IconAdd from '@material-ui/icons/Add';
+
 import { FabAdd } from '../../../../common';
+import Button from '../../../../common/Button/Button';
 
 import SketchList from '../sketchList';
 
@@ -32,6 +36,19 @@ class Sidebar extends React.Component {
   render() {
     return (
       <Container className={this.props.className}>
+        <Button
+          color="green"
+          onClick={() => console.log('add')}
+        >
+          <IconAdd />
+        </Button>
+
+        <Button
+          color="Red"
+        >
+          <IconDelete/>
+        </Button>
+
         <SketchList />
 
         <FabAdd
