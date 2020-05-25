@@ -8,7 +8,6 @@ import Repository from '..';
 
 const getInitialState = () => {
   const sketches = Repository.load() || [{}];
-  console.log(sketches)
 
   return {
     sketches: sketches,

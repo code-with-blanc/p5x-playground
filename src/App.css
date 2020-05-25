@@ -9,7 +9,7 @@
   overflow-y: hidden;
 
   display: grid;
-  grid-template-rows: 48px 1fr;
+  grid-template-rows: 48px calc(100vh - 48px);
   grid-template-columns: 1fr max(300px, 20%);
   grid-template-areas:
     "appbar appbar"
