@@ -16,7 +16,7 @@ export const Preview : React.FC<Props> = ({
 
   return (
     <div className={className}>
-      <canvas ref={canvasRef} width="200" height="150%" />
+      <canvas ref={canvasRef} width="355" height="200" />
     </div>
   )
 }
@@ -40,4 +40,9 @@ export default styled(Preview)`
   color: black;
   font-size: 16pt;
   font-family: ${props => props.theme.typography.fontFamily};
+
+  & canvas {
+    width: 100%;
+    height: 100%;
+  }
 `;
