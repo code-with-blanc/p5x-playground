@@ -1,28 +1,21 @@
 language: node_js
 node_js:
   - "stable"
-cache:
-  directories:
-  - node_modules
-
-## build
-script:
-  - npm test -- -all --coverage
-  - npm run build
-
-## sonar
 addons:
   sonarcloud:
     organization: "jsx"
     token: $TOKEN_SONARCLOUD_USER
-script:
-  # other script steps might be done before running the actual analysis
-  - sonar-scanner
+cache:
+  directories:
+  - node_modules
 
-## deploy
+script:
+  - npm test -- -all --coverage
+  - sonar-scanner
+  - npm run build
+
 deploy:
   provider: pages
-  skip_cleanup: true
   github_token: $GITHUB_TOKEN
   keep_history: true
   local_dir: ./build
