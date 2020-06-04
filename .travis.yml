@@ -4,9 +4,22 @@ node_js:
 cache:
   directories:
   - node_modules
+
+## sonar
+addons:
+  sonarcloud:
+    organization: "jsx"
+    token: $TOKEN_SONARCLOUD_USER
+script:
+  # other script steps might be done before running the actual analysis
+  - sonar-scanner
+
+## build
 script:
 #  - npm test
   - npm run build
+
+## deploy
 deploy:
   provider: pages
   skip_cleanup: true
