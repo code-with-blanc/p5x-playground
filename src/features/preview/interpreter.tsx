@@ -1,4 +1,5 @@
-import { RefObject } from "react";
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { RefObject } from 'react';
 
 
 const runSketch = (code?: string, canvas?: RefObject<HTMLCanvasElement>) => {
@@ -7,14 +8,14 @@ const runSketch = (code?: string, canvas?: RefObject<HTMLCanvasElement>) => {
   if (ctx) {
     try {
       // eslint-disable-next-line no-new-func
-      let userFn = Function(`return (ctx) => {
+      const userFn = Function(`return (ctx) => {
         ${code}
       }`)();
-    
+
       try {
-        clearCanvas(canvas?.current!, ctx!);
+        clearCanvas(canvas!.current!, ctx!);
         userFn(ctx!);
-      } catch(err) {
+      } catch (err) {
         // eslint-disable-next-line no-console
         console.log((err as Error).message);
       }
@@ -22,9 +23,9 @@ const runSketch = (code?: string, canvas?: RefObject<HTMLCanvasElement>) => {
       // Error creating a fn from user code (eg. syntax error)
     }
   } else {
-    throw Error("Canvas not supported")
+    throw Error('Canvas not supported');
   }
-}
+};
 
 const clearCanvas = (canvas : HTMLCanvasElement, ctx : CanvasRenderingContext2D) => {
   // Store the current transformation matrix
@@ -36,6 +37,6 @@ const clearCanvas = (canvas : HTMLCanvasElement, ctx : CanvasRenderingContext2D)
 
   // Restore the transform
   ctx.restore();
-}
+};
 
 export default runSketch;

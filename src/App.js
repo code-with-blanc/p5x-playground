@@ -19,8 +19,9 @@ function App() {
         <div className="App">
           <AppBar className="appbar" />
 
-          <PipLayout className="editor"
-            background={<Editor/>}
+          <PipLayout
+            className="editor"
+            background={<Editor />}
             pip={<Preview />}
           />
           <Sidebar className="sidebar" />

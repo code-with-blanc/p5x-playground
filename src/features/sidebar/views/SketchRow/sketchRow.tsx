@@ -1,29 +1,29 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 
 import { Sketch } from '../../../../repository/sketch';
 
 interface SketchRowProps {
   sketch: Sketch;
-  selected?: Boolean;
+  selected?: boolean;
   onClick?: any;
-};
+}
 
-const Container = styled('div')<{selected?: Boolean} & React.HTMLAttributes<HTMLDivElement>>`
+const Container = styled('div')<{selected?: boolean} & React.HTMLAttributes<HTMLDivElement>>`
   width: 100%;
   min-height: 48px;
 
   color: white;
   cursor: pointer;
 
-  background-color: ${({selected, theme}) => (
-    selected ?
-      theme.palette.list.hover
+  background-color: ${({ selected, theme }) => (
+    selected
+      ? theme.palette.list.hover
       : theme.palette.list.background
   )};
 
   :hover {
-    background-color: ${ props => props.theme.palette.list.hover };
+    background-color: ${(props) => props.theme.palette.list.hover};
   }
 `;
 
@@ -37,7 +37,7 @@ const Name = styled.div`
 `;
 
 class SketchRow extends React.Component<SketchRowProps> {
-  renderCount : number = 0;
+  renderCount = 0;
 
   render() {
     this.renderCount += 1;
@@ -46,9 +46,8 @@ class SketchRow extends React.Component<SketchRowProps> {
       <Container onClick={this.props.onClick} selected={this.props.selected}>
         <Name>{this.props.sketch.name}</Name>
       </Container>
-    )
-  };
-
+    );
+  }
 }
 
 export default SketchRow;

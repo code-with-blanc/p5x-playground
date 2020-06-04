@@ -1,4 +1,4 @@
-import React, { createRef, useEffect } from 'react'
+import React, { createRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { Sketch } from '../../repository/sketch';
 
@@ -18,8 +18,8 @@ export const Preview : React.FC<Props> = ({
     <div className={className}>
       <canvas ref={canvasRef} width="355" height="200" />
     </div>
-  )
-}
+  );
+};
 
 interface Props {
   className?: string;
@@ -39,7 +39,7 @@ export default styled(Preview)`
 
   color: black;
   font-size: 16pt;
-  font-family: ${props => props.theme.typography.fontFamily};
+  font-family: ${(props) => props.theme.typography.fontFamily};
 
   & canvas {
     width: 100%;

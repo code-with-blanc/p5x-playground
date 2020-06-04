@@ -12,12 +12,12 @@ describe('sketchStore operations', () => {
   it('should setActiveSketch', () => {
     const id = 1;
 
-    const store = mockStore()
+    const store = mockStore();
 
     Operations.setActiveSketch(store.dispatch)(id);
 
     expect(store.getActions()).toEqual([
-      Actions.setActiveSketchId(id)
+      Actions.setActiveSketchId(id),
     ]);
-  })
+  });
 });

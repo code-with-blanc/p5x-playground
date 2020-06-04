@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import InputBase from '@material-ui/core/InputBase';
 
 export const ClickableTextField : React.FC<Props> = ({
-  className, defaultValue, value:controlledValue, onChange, onFocus, onBlur,
+  className, defaultValue, value: controlledValue, onChange, onFocus, onBlur,
 }) => {
   const inputRef = React.useRef<HTMLInputElement>();
   const [uncontrolledValue, setUncontrolledValue] = useState<string|null>(null);
@@ -21,31 +21,31 @@ export const ClickableTextField : React.FC<Props> = ({
         value={
           hasFocus
             ? controlledValue ?? uncontrolledValue
-            : (controlledValue ?? uncontrolledValue) || defaultValue            
+            : (controlledValue ?? uncontrolledValue) || defaultValue
         }
 
         onFocus={() => {
-          setFocus(true)
-          if(onFocus) { onFocus() };
+          setFocus(true);
+          if (onFocus) { onFocus(); }
         }}
         onBlur={() => {
-          setFocus(false)
-          if(onBlur) { onBlur() };  
+          setFocus(false);
+          if (onBlur) { onBlur(); }
         }}
         onChange={(event) => {
           const isControlled = (controlledValue !== undefined && controlledValue !== null);
-          if(isControlled) {
+          if (isControlled) {
             setUncontrolledValue(null);
           } else {
             setUncontrolledValue(event.target.value);
           }
 
-          if(onChange) { onChange(event.target.value); }
+          if (onChange) { onChange(event.target.value); }
         }}
       />
     </Container>
-  )
-}
+  );
+};
 
 const Container = styled('div')`
   border-radius: 5px;
@@ -58,10 +58,10 @@ const Container = styled('div')`
   }
 
   :hover {
-    background-color: ${({theme}) => theme.palette.background.paper};
+    background-color: ${({ theme }) => theme.palette.background.paper};
   }
   :focus-within {
-    background-color: ${({theme}) => theme.palette.background.paper};
+    background-color: ${({ theme }) => theme.palette.background.paper};
     cursor: text;
     input {
       cursor: text;

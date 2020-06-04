@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -44,23 +44,21 @@ const PictureInPicture = styled.div`
 `;
 
 export const PipLayout : React.FC<Props> = ({
-  className, background, pip
-}) => {
-  return (
-    <Container className={className}>
-      <Background>
-        {background}
-      </Background>
-      <PictureInPicture>
-        <div className="pip-adjust-ratio">
-          <div className="pip-fill-height">
+  className, background, pip,
+}) => (
+  <Container className={className}>
+    <Background>
+      {background}
+    </Background>
+    <PictureInPicture>
+      <div className="pip-adjust-ratio">
+        <div className="pip-fill-height">
           {pip}
-          </div>
         </div>
-      </PictureInPicture>
-    </Container>
-  )
-}
+      </div>
+    </PictureInPicture>
+  </Container>
+);
 
 interface Props {
   className?: string;

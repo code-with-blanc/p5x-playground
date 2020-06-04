@@ -10,7 +10,7 @@ import SketchList from '../sketchList';
 
 class Sidebar extends React.Component {
   props: SidebarProps;
-  
+
   constructor(props: SidebarProps) {
     super(props);
     this.props = props;
@@ -19,8 +19,8 @@ class Sidebar extends React.Component {
   render() {
     return (
       <Container className={this.props.className}>
-        <SketchList className="list"/>
-      
+        <SketchList className="list" />
+
         <Button
           className="button-add"
           color="green"
@@ -34,7 +34,7 @@ class Sidebar extends React.Component {
           color="Red"
           onClick={() => this.props.removeSketch(this.props.activeSketchId)}
         >
-          <IconDelete/>
+          <IconDelete />
         </Button>
       </Container>
     );
@@ -46,7 +46,7 @@ const Container = styled.div`
   height: 100%;
   overflow-y: hidden;
 
-  background-color: ${ props => props.theme.palette.background.default };
+  background-color: ${(props) => props.theme.palette.background.default};
 
   display: grid;
   grid-template-rows: 1fr 64px;

@@ -2,7 +2,7 @@ export interface Sketch {
   id: number;
   name: string;
   code: string;
-};
+}
 
 export class Sketch implements Sketch {
   constructor(
@@ -10,4 +10,4 @@ export class Sketch implements Sketch {
     public name : string,
     public code : string,
   ) {}
-};
+}

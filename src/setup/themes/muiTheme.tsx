@@ -14,7 +14,7 @@ const muiTheme = createMuiTheme({
       default: blueGrey[900],
       paper: blueGrey[700],
     },
-  }
+  },
 });
 
 export default muiTheme;
