@@ -10,7 +10,7 @@ cache:
   - node_modules
 
 script:
-  - npm test -- -all --coverage
+  - npm test -- --all --coverage
   - sonar-scanner
   - npm run build
 
