@@ -9,7 +9,7 @@ const AppBar = (props: AppbarProps) => {
   const updateName = (name?: string) => {
     if (props.sketch) {
       const newSketch = Object.assign(props.sketch, { name: name ?? '' });
-      props.updateSketch(newSketch);
+      props.patchSketch(newSketch);
     }
   };
 
@@ -46,7 +46,7 @@ const Container = styled.div`
 interface AppbarProps {
   className?: string;
   sketch?: Sketch;
-  updateSketch: (sketch: Sketch) => void;
+  patchSketch: (sketch: Sketch) => void;
 }
 
 export default AppBar;

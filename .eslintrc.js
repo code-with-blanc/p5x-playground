@@ -42,6 +42,7 @@ module.exports = {
     'max-len': ['warn', 120],
     'no-multi-spaces': ['warn', { ignoreEOLComments: true }],
     'no-trailing-spaces': ['warn', { skipBlankLines: true, ignoreComments: true }],
+    'lines-between-class-members': ['warn', { exceptAfterSingleLine: true }],
     'quote-props': ['off'],
   },
 };

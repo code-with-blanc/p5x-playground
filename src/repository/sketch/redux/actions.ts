@@ -13,6 +13,8 @@ export interface SketchAction<TPayload> {
   payload: TPayload;
 }
 
+export type PayloadTypes = number | Sketch | Sketch[] | Partial<Sketch>;
+
 // / Action Creators
 export const setSketches = (sketches: Sketch []) : SketchAction<Sketch[]> => ({
   type: SET_SKETCHES,
@@ -29,11 +31,6 @@ export const removeSketch = (id: number) : SketchAction<number> => ({
   payload: id,
 });
 
-export const updateSketch = (sketch: Sketch) : SketchAction<Sketch> => ({
-  type: UPDATE_SKETCH,
-  payload: sketch,
-});
-
 export const setActiveSketchId = (id: number) : SketchAction<number> => ({
   type: SET_ACTIVE,
   payload: id,
@@ -45,4 +42,9 @@ export const updateCode = (id: number, newCode: string) : SketchAction<any> => (
     id,
     code: newCode,
   },
+});
+
+export const patchSketch = (patch: Partial<Sketch>) : SketchAction<Partial<Sketch>> => ({
+  type: UPDATE_SKETCH,
+  payload: patch,
 });

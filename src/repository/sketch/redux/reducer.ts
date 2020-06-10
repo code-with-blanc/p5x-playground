@@ -1,10 +1,10 @@
-import { SketchStoreState } from './sketchStoreState';
+import { SketchStoreState } from '../../types/sketchStoreState';
 import {
   SketchAction,
-  ADD_SKETCH, REMOVE_SKETCH, SET_ACTIVE, SET_SKETCHES, PATCH_SKETCH, UPDATE_SKETCH,
+  ADD_SKETCH, REMOVE_SKETCH, SET_ACTIVE, SET_SKETCHES, PATCH_SKETCH, UPDATE_SKETCH, PayloadTypes,
 } from './actions';
 
-import Repository from '..';
+import Repository, { Sketch } from '..';
 
 const getInitialState = () => {
   const sketches = Repository.load() || [{}];
@@ -17,17 +17,17 @@ const getInitialState = () => {
 
 export const INITIAL_STATE: SketchStoreState = getInitialState();
 
-const reducer = (state = INITIAL_STATE, action: SketchAction<any>): SketchStoreState => {
+const reducer = (state = INITIAL_STATE, action: SketchAction<PayloadTypes>): SketchStoreState => {
   switch (action.type) {
     case SET_SKETCHES:
       return {
         ...state,
-        sketches: action.payload,
+        sketches: action.payload as Sketch[],
       };
     case ADD_SKETCH:
       return {
         ...state,
-        sketches: [...state.sketches, action.payload],
+        sketches: [...state.sketches, action.payload as Sketch],
       };
     case REMOVE_SKETCH:
       return {
@@ -38,25 +38,28 @@ const reducer = (state = INITIAL_STATE, action: SketchAction<any>): SketchStoreS
       return {
         ...state,
         sketches: state.sketches.map((s) => {
-          if (s.id === action.payload?.id) {
-            return { ...action.payload };
+          const newSketchInfo = action.payload as Partial<Sketch>;
+          if (s.id === newSketchInfo?.id) {
+            return { ...s, ...newSketchInfo };
           }
+
           return s;
         }),
       };
     case SET_ACTIVE:
       return {
         ...state,
-        activeSketchId: action.payload,
+        activeSketchId: action.payload as number,
       };
     case PATCH_SKETCH:
       return {
         ...state,
         sketches: state.sketches.map((s) => {
-          if (s.id === action.payload.id) {
+          const patch = action.payload as Partial<Sketch>;
+          if (s.id === patch?.id) {
             return {
               ...s,
-              code: action.payload.code,
+              ...patch,
             };
           }
 

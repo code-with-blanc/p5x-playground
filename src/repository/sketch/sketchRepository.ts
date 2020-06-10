@@ -1,5 +1,5 @@
 import { Store } from 'redux';
-import { Sketch } from './sketch';
+import { Sketch } from '../types/sketch';
 
 import defaultSketches from './defaultSketches.js';
 
@@ -21,17 +21,17 @@ class SketchRepository {
 
   public static getNewSketch() : Sketch {
     const existingSketches : Array<Sketch> = SketchRepository.store?.getState()?.sketchStore?.sketches || [];
-    const max = existingSketches.reduce((max, s) => (s.id > max ? s.id : max), 0);
+    const maxId = existingSketches.reduce((max, s) => (s.id > max ? s.id : max), 0);
 
     return {
-      id: max + 1,
-      name: `Sketch (${max + 1})`,
+      id: maxId + 1,
+      name: `Sketch (${maxId + 1})`,
       code: '',
     };
   }
 
   public static load() : Sketch [] {
-    const stored = localStorage.getItem(LS_STORAGE);
+    const stored = window?.localStorage?.getItem(LS_STORAGE);
     if (stored) {
       return JSON.parse(stored) || defaultSketches;
     }
