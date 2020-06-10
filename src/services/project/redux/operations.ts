@@ -13,7 +13,7 @@ export const removeSourceFile = (dispatch: Dispatch) => (id: number) => {
 };
 
 export const updateCode = (dispatch: Dispatch) => (id: number, code: string) => {
-  dispatch(Actions.updateCode(id, code));
+  dispatch(Actions.patchSourceFile({ id, code }));
 };
 
 export const patchSourceFile = (dispatch: Dispatch) => (id: number, patch: Partial<SourceFile>) => {

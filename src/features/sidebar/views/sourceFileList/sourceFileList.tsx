@@ -7,7 +7,7 @@ import { SourceFile } from '../../../../services/project/types/sourceFile';
 
 export const SourceFileList : React.FC<SourceFileListProps> = (props) => (
   <div className={props.className}>
-    {props.sourceFilees?.map((s, i) => (
+    {props.sourceFiles?.map((s, i) => (
       <SourceFileRow
         sourceFile={s}
         key={i}
@@ -20,7 +20,7 @@ export const SourceFileList : React.FC<SourceFileListProps> = (props) => (
 
 interface SourceFileListProps {
   className?: string;
-  sourceFilees: SourceFile[];
+  sourceFiles: SourceFile[];
   selectedSourceFileId: number;
   setSelected: (id: number) => void;
 }

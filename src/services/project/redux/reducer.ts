@@ -1,17 +1,17 @@
 import { SourceFileStoreState } from '../types/sourceFileStoreState';
 import {
   SourceFileAction,
-  ADD_SKETCH, REMOVE_SKETCH, SET_ACTIVE, SET_SKETCHES, PATCH_SKETCH, UPDATE_SKETCH, PayloadTypes,
+  ADD_SOURCE, REMOVE_SOURCE, SET_ACTIVE_SOURCE, SET_SOURCES_LIST, PATCH_SOURCE, PayloadTypes,
 } from './actions';
 
 import Repository, { SourceFile } from '..';
 
 const getInitialState = () => {
-  const sourceFilees = Repository.load() || [{}];
+  const sourceFiles = Repository.load() || [{}];
 
   return {
-    sourceFilees,
-    activeSourceFileId: sourceFilees[0]?.id,
+    sourceFiles,
+    activeSourceFileId: sourceFiles[0]?.id,
   };
 };
 
@@ -19,42 +19,30 @@ export const INITIAL_STATE: SourceFileStoreState = getInitialState();
 
 const reducer = (state = INITIAL_STATE, action: SourceFileAction<PayloadTypes>): SourceFileStoreState => {
   switch (action.type) {
-    case SET_SKETCHES:
+    case SET_SOURCES_LIST:
       return {
         ...state,
-        sourceFilees: action.payload as SourceFile[],
+        sourceFiles: action.payload as SourceFile[],
       };
-    case ADD_SKETCH:
+    case ADD_SOURCE:
       return {
         ...state,
-        sourceFilees: [...state.sourceFilees, action.payload as SourceFile],
+        sourceFiles: [...state.sourceFiles, action.payload as SourceFile],
       };
-    case REMOVE_SKETCH:
+    case REMOVE_SOURCE:
       return {
         ...state,
-        sourceFilees: state.sourceFilees.filter((s) => s.id !== action.payload),
+        sourceFiles: state.sourceFiles.filter((s) => s.id !== action.payload),
       };
-    case UPDATE_SKETCH:
-      return {
-        ...state,
-        sourceFilees: state.sourceFilees.map((s) => {
-          const newSourceFileInfo = action.payload as Partial<SourceFile>;
-          if (s.id === newSourceFileInfo?.id) {
-            return { ...s, ...newSourceFileInfo };
-          }
-
-          return s;
-        }),
-      };
-    case SET_ACTIVE:
+    case SET_ACTIVE_SOURCE:
       return {
         ...state,
         activeSourceFileId: action.payload as number,
       };
-    case PATCH_SKETCH:
+    case PATCH_SOURCE:
       return {
         ...state,
-        sourceFilees: state.sourceFilees.map((s) => {
+        sourceFiles: state.sourceFiles.map((s) => {
           const patch = action.payload as Partial<SourceFile>;
           if (s.id === patch?.id) {
             return {

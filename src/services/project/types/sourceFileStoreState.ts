@@ -1,6 +1,6 @@
 import { SourceFile } from './sourceFile';
 
 export interface SourceFileStoreState {
-  sourceFilees: SourceFile[];
+  sourceFiles: SourceFile[];
   activeSourceFileId: number | null;
 }

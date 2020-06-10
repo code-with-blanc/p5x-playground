@@ -1,12 +1,11 @@
 import { SourceFile } from '..';
 
-// Types
-export const SET_SKETCHES = 'sourceFilees/SET_SKETCHES';
-export const ADD_SKETCH = 'sourceFilees/ADD_SKETCH';
-export const REMOVE_SKETCH = 'sourceFilees/REMOVE_SKETCH';
-export const SET_ACTIVE = 'sourceFilees/SET_ACTIVE';
-export const PATCH_SKETCH = 'sourceFilees/PATCH_SKETCH';
-export const UPDATE_SKETCH = 'sourceFilees/UPDATE_SKETCH';
+//// Types
+export const SET_SOURCES_LIST = 'sourceFiles/SET_LIST';
+export const ADD_SOURCE = 'sourceFiles/ADD_SOURCE';
+export const REMOVE_SOURCE = 'sourceFiles/REMOVE_SOURCE';
+export const SET_ACTIVE_SOURCE = 'sourceFiles/SET_ACTIVE_SOURCE';
+export const PATCH_SOURCE = 'sourceFiles/PATCH_SOURCE';
 
 export interface SourceFileAction<TPayload> {
   type: string;
@@ -15,36 +14,28 @@ export interface SourceFileAction<TPayload> {
 
 export type PayloadTypes = number | SourceFile | SourceFile[] | Partial<SourceFile>;
 
-// / Action Creators
-export const setSourceFilees = (sourceFilees: SourceFile []) : SourceFileAction<SourceFile[]> => ({
-  type: SET_SKETCHES,
-  payload: sourceFilees,
+//// Action Creators
+export const setSourceFiles = (sourceFiles: SourceFile []) : SourceFileAction<SourceFile[]> => ({
+  type: SET_SOURCES_LIST,
+  payload: sourceFiles,
 });
 
 export const addSourceFile = (newSourceFile: SourceFile) : SourceFileAction<SourceFile> => ({
-  type: ADD_SKETCH,
+  type: ADD_SOURCE,
   payload: newSourceFile,
 });
 
 export const removeSourceFile = (id: number) : SourceFileAction<number> => ({
-  type: REMOVE_SKETCH,
+  type: REMOVE_SOURCE,
   payload: id,
 });
 
 export const setActiveSourceFileId = (id: number) : SourceFileAction<number> => ({
-  type: SET_ACTIVE,
+  type: SET_ACTIVE_SOURCE,
   payload: id,
 });
 
-export const updateCode = (id: number, newCode: string) : SourceFileAction<any> => ({
-  type: PATCH_SKETCH,
-  payload: {
-    id,
-    code: newCode,
-  },
-});
-
 export const patchSourceFile = (patch: Partial<SourceFile>) : SourceFileAction<Partial<SourceFile>> => ({
-  type: UPDATE_SKETCH,
+  type: PATCH_SOURCE,
   payload: patch,
 });

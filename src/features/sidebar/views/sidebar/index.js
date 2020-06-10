@@ -4,7 +4,7 @@ import Sidebar from './sidebar';
 import { Operations } from '../../../../services/project/redux';
 
 const mapStateToProps = ({ sourceFileStore }) => ({
-  sourceFilees: sourceFileStore.sourceFilees,
+  sourceFiles: sourceFileStore.sourceFiles,
   activeSourceFileId: sourceFileStore.activeSourceFileId,
 });
 

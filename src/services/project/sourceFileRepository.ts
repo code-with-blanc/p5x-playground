@@ -1,7 +1,7 @@
 import { Store } from 'redux';
 import { SourceFile } from './types/sourceFile';
 
-import defaultSourceFilees from './defaultSources.js';
+import defaultSourceFiles from './defaultSources.js';
 
 const LS_STORAGE = 'sourceFiles';
   
@@ -20,8 +20,8 @@ class SourceFileRepository {
   }
 
   public static getNewSourceFile() : SourceFile {
-    const existingSourceFilees : Array<SourceFile> = SourceFileRepository.store?.getState()?.sourceFileStore?.sourceFilees || [];
-    const maxId = existingSourceFilees.reduce((max, s) => (s.id > max ? s.id : max), 0);
+    const existingSourceFiles : Array<SourceFile> = SourceFileRepository.store?.getState()?.sourceFileStore?.sourceFiles || [];
+    const maxId = existingSourceFiles.reduce((max, s) => (s.id > max ? s.id : max), 0);
 
     return {
       id: maxId + 1,
@@ -33,14 +33,14 @@ class SourceFileRepository {
   public static load() : SourceFile [] {
     const stored = window?.localStorage?.getItem(LS_STORAGE);
     if (stored) {
-      return JSON.parse(stored) || defaultSourceFilees;
+      return JSON.parse(stored) || defaultSourceFiles;
     }
 
-    return defaultSourceFilees;
+    return defaultSourceFiles;
   }
 
   private static onStoreUpdate(state : any) {
-    localStorage.setItem(LS_STORAGE, JSON.stringify(state.sourceFilees));
+    localStorage.setItem(LS_STORAGE, JSON.stringify(state.sourceFiles));
   }
 }
 
