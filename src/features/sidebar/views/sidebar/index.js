@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 
 import Sidebar from './sidebar';
-import { Operations } from '../../../../repository/sketch/redux';
+import { Operations } from '../../../../services/project/redux';
 
-const mapStateToProps = ({ sketchStore }) => ({
-  sketches: sketchStore.sketches,
-  activeSketchId: sketchStore.activeSketchId,
+const mapStateToProps = ({ sourceFileStore }) => ({
+  sourceFilees: sourceFileStore.sourceFilees,
+  activeSourceFileId: sourceFileStore.activeSourceFileId,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addSketch: Operations.newSketch(dispatch),
-  removeSketch: (id) => Operations.removeSketch(dispatch)(id),
+  addSourceFile: Operations.newSourceFile(dispatch),
+  removeSourceFile: (id) => Operations.removeSourceFile(dispatch)(id),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

@@ -1,9 +1,9 @@
 import { createStore } from 'redux';
 import rootReducer from './rootReducer';
-import SketchRepository from '../../repository/sketch';
+import SourceFileRepository from '../../services/project';
 
 const store = createStore(rootReducer);
 
-SketchRepository.subscribe(store);
+SourceFileRepository.subscribe(store);
 
 export default store;

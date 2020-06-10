@@ -1,17 +1,17 @@
 import React, { createRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { Sketch } from '../../repository/sketch';
+import { SourceFile } from '../../services/project/types/sourceFile';
 
-import runSketch from './interpreter';
+import runSourceFile from './interpreter';
 
 export const Preview : React.FC<Props> = ({
-  className, sketch,
+  className, sourceFile,
 }) => {
-  const code = sketch?.code;
+  const code = sourceFile?.code;
   const canvasRef = createRef<HTMLCanvasElement>();
 
   useEffect(() => {
-    runSketch(code, canvasRef);
+    runSourceFile(code, canvasRef);
   }, [code, canvasRef]);
 
   return (
@@ -23,7 +23,7 @@ export const Preview : React.FC<Props> = ({
 
 interface Props {
   className?: string;
-  sketch?: Sketch;
+  sourceFile?: SourceFile;
 }
 
 export default styled(Preview)`

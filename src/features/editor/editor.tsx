@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 import CustomSimpleEditor from './customSimpleEditor/CustomSimpleEditor';
-import { Sketch } from '../../repository/sketch';
+import { SourceFile } from '../../services/project/types/sourceFile';
 
 interface EditorProps {
   className?: string;
   count?: number;
-  sketch?: Sketch;
+  sourceFile?: SourceFile;
   updateCode: (id: number, value: string) => void;
 }
 
@@ -21,9 +21,9 @@ const Editor : React.FC<EditorProps> = (props) => {
   return (
     <Div className={props.className}>
       <CustomSimpleEditor
-        value={props?.sketch?.code}
+        value={props?.sourceFile?.code}
         onValueChange={(value) => {
-          const id = props.sketch?.id;
+          const id = props.sourceFile?.id;
           if (id) {
             props.updateCode(id, value);
           }

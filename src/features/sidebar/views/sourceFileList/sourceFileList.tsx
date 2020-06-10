@@ -1,0 +1,31 @@
+import React from 'react';
+
+import styled from 'styled-components';
+import SourceFileRow from '../sourceFileRow';
+import { SourceFile } from '../../../../services/project/types/sourceFile';
+
+
+export const SourceFileList : React.FC<SourceFileListProps> = (props) => (
+  <div className={props.className}>
+    {props.sourceFilees?.map((s, i) => (
+      <SourceFileRow
+        sourceFile={s}
+        key={i}
+        selected={s.id === props.selectedSourceFileId}
+        onClick={() => props.setSelected(s.id)}
+      />
+    ))}
+  </div>
+);
+
+interface SourceFileListProps {
+  className?: string;
+  sourceFilees: SourceFile[];
+  selectedSourceFileId: number;
+  setSelected: (id: number) => void;
+}
+
+export default styled(SourceFileList)`
+  height: 100%;
+  overflow-y: auto;
+`;

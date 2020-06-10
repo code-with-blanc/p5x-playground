@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ClickableTextField } from '../../../../common/ClickableTextField/ClickableTextField';
-import { Sketch } from '../../../../repository/sketch';
+import { SourceFile } from '../../../../services/project/types/sourceFile';
 
 const AppBar = (props: AppbarProps) => {
   const [originalName, setOriginalName] = useState<string | undefined>('');
 
   const updateName = (name?: string) => {
-    if (props.sketch) {
-      const newSketch = Object.assign(props.sketch, { name: name ?? '' });
-      props.patchSketch(newSketch);
+    if (props.sourceFile) {
+      const newSourceFile = Object.assign(props.sourceFile, { name: name ?? '' });
+      props.patchSourceFile(newSourceFile);
     }
   };
 
@@ -17,12 +17,12 @@ const AppBar = (props: AppbarProps) => {
     <Container className={props.className}>
       <ClickableTextField
         defaultValue={originalName}
-        value={props.sketch?.name}
+        value={props.sourceFile?.name}
         onFocus={() => {
-          setOriginalName(props.sketch?.name);
+          setOriginalName(props.sourceFile?.name);
         }}
         onBlur={() => {
-          if (!props.sketch?.name && originalName) {
+          if (!props.sourceFile?.name && originalName) {
             updateName(originalName);
           }
         }}
@@ -45,8 +45,8 @@ const Container = styled.div`
 
 interface AppbarProps {
   className?: string;
-  sketch?: Sketch;
-  patchSketch: (sketch: Sketch) => void;
+  sourceFile?: SourceFile;
+  patchSourceFile: (sourceFile: SourceFile) => void;
 }
 
 export default AppBar;

@@ -2,7 +2,7 @@
 import { RefObject } from 'react';
 
 
-const runSketch = (code?: string, canvas?: RefObject<HTMLCanvasElement>) => {
+const runSourceFile = (code?: string, canvas?: RefObject<HTMLCanvasElement>) => {
   const ctx = canvas?.current?.getContext('2d');
 
   if (ctx) {
@@ -39,4 +39,4 @@ const clearCanvas = (canvas : HTMLCanvasElement, ctx : CanvasRenderingContext2D)
   ctx.restore();
 };
 
-export default runSketch;
+export default runSourceFile;

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Sketch } from '../../../../repository/sketch';
+import { SourceFile } from '../../../../services/project/types/sourceFile';
 
-interface SketchRowProps {
-  sketch: Sketch;
+interface SourceFileRowProps {
+  sourceFile: SourceFile;
   selected?: boolean;
   onClick?: any;
 }
@@ -36,7 +36,7 @@ const Name = styled.div`
   font-weight: 500;
 `;
 
-class SketchRow extends React.Component<SketchRowProps> {
+class SourceFileRow extends React.Component<SourceFileRowProps> {
   renderCount = 0;
 
   render() {
@@ -44,10 +44,10 @@ class SketchRow extends React.Component<SketchRowProps> {
 
     return (
       <Container onClick={this.props.onClick} selected={this.props.selected}>
-        <Name>{this.props.sketch.name}</Name>
+        <Name>{this.props.sourceFile.name}</Name>
       </Container>
     );
   }
 }
 
-export default SketchRow;
+export default SourceFileRow;

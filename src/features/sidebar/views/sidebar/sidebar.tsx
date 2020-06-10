@@ -6,7 +6,7 @@ import IconAdd from '@material-ui/icons/Add';
 
 import Button from '../../../../common/Button/Button';
 
-import SketchList from '../sketchList';
+import SourceFileList from '../sourceFileList';
 
 class Sidebar extends React.Component {
   props: SidebarProps;
@@ -19,12 +19,12 @@ class Sidebar extends React.Component {
   render() {
     return (
       <Container className={this.props.className}>
-        <SketchList className="list" />
+        <SourceFileList className="list" />
 
         <Button
           className="button-add"
           color="green"
-          onClick={this.props.addSketch}
+          onClick={this.props.addSourceFile}
         >
           <IconAdd />
         </Button>
@@ -32,7 +32,7 @@ class Sidebar extends React.Component {
         <Button
           className="button-delete"
           color="Red"
-          onClick={() => this.props.removeSketch(this.props.activeSketchId)}
+          onClick={() => this.props.removeSourceFile(this.props.activeSourceFileId)}
         >
           <IconDelete />
         </Button>
@@ -73,9 +73,9 @@ const Container = styled.div`
 
 interface SidebarProps {
   className: string;
-  activeSketchId: number;
-  addSketch: () => void;
-  removeSketch: (id: number) => void;
+  activeSourceFileId: number;
+  addSourceFile: () => void;
+  removeSourceFile: (id: number) => void;
 }
 
 export default Sidebar;

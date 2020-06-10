@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 
-import { Selectors, Operations } from '../../../../repository/sketch/redux';
+import { Selectors, Operations } from '../../../../services/project/redux';
 
 import AppBar from './appbar';
 
-const mapStateToProps = ({ sketchStore }) => ({
-  sketch: Selectors.activeSketch(sketchStore),
+const mapStateToProps = ({ sourceFileStore }) => ({
+  sourceFile: Selectors.activeSourceFile(sourceFileStore),
   date: Date.now(),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  patchSketch: (id, name) => Operations.patchSketch(dispatch)(id, { name }),
+  patchSourceFile: (id, name) => Operations.patchSourceFile(dispatch)(id, { name }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppBar);
