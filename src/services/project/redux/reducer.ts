@@ -1,4 +1,4 @@
-import { SourceFileStoreState } from '../types/sourceFileStoreState';
+import { ProjectState } from './projectState';
 import {
   SourceFileAction,
   ADD_SOURCE, REMOVE_SOURCE, SET_ACTIVE_SOURCE, SET_SOURCES_LIST, PATCH_SOURCE, PayloadTypes,
@@ -15,9 +15,9 @@ const getInitialState = () => {
   };
 };
 
-export const INITIAL_STATE: SourceFileStoreState = getInitialState();
+export const INITIAL_STATE: ProjectState = getInitialState();
 
-const reducer = (state = INITIAL_STATE, action: SourceFileAction<PayloadTypes>): SourceFileStoreState => {
+const reducer = (state = INITIAL_STATE, action: SourceFileAction<PayloadTypes>): ProjectState => {
   switch (action.type) {
     case SET_SOURCES_LIST:
       return {
