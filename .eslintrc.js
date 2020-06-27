@@ -20,10 +20,11 @@ module.exports = {
   ],
   rules: {
     'react/jsx-filename-extension': ['warn', { extensions: ['.jsx', '.tsx'] }],
+    'linebreak-style': 'off',  // we assume git handles this
 
-    // this rule complains about Components, which will often end up converted to () => {} to accommodate logic
+    // Components will often end up converted to () => {} to accommodate logic
     'arrow-body-style': ['off'],
-    // disabling makes files cleaner. Babel will hoist declarations in build anyway
+    // disabling this makes files cleaner. Babel will hoist declarations in build anyway
     'no-use-before-define': ['off'],
 
     // complains about render()
@@ -42,7 +43,7 @@ module.exports = {
     'max-len': ['warn', 120],
     'no-multi-spaces': ['warn', { ignoreEOLComments: true }],
     'no-trailing-spaces': ['warn', { skipBlankLines: true, ignoreComments: true }],
-    'lines-between-class-members': ['warn', { exceptAfterSingleLine: true }],
+    // 'lines-between-class-members': ['warn', { exceptAfterSingleLine: true }],
     'quote-props': ['off'],
   },
 };

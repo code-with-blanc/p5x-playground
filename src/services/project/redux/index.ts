@@ -1,6 +1,6 @@
 import reducer from './reducer';
-import * as Operations from './operations';
 import * as Selectors from './selectors';
+import * as Actions from './actions';
 
 export default reducer;
-export { Operations, Selectors };
+export { Selectors, Actions };

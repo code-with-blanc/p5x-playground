@@ -1,21 +1,14 @@
 import { ProjectState } from './projectState';
+import { SourceFile } from '..';
 import {
   SourceFileAction,
   ADD_SOURCE, REMOVE_SOURCE, SET_ACTIVE_SOURCE, SET_SOURCES_LIST, PATCH_SOURCE, PayloadTypes,
 } from './actions';
 
-import Repository, { SourceFile } from '..';
-
-const getInitialState = () => {
-  const sourceFiles = Repository.load() || [{}];
-
-  return {
-    sourceFiles,
-    activeSourceFileId: sourceFiles[0]?.id,
-  };
+export const INITIAL_STATE: ProjectState = {
+  sourceFiles: [],
+  activeSourceFileId: null,
 };
-
-export const INITIAL_STATE: ProjectState = getInitialState();
 
 const reducer = (state = INITIAL_STATE, action: SourceFileAction<PayloadTypes>): ProjectState => {
   switch (action.type) {

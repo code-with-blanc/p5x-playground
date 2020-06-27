@@ -1,22 +1,30 @@
-import { all, take } from 'redux-saga/effects';
+import { all, take, put, select } from 'redux-saga/effects';
+
+import * as actions from './actions';
+import ProjectService from '../projectService';
 
 export default function* rootProjectSaga() {
   yield loadFromLocalStorage();
   
   yield all([
-    updateCodeSaga(),
+    addSourceSaga(),
   ]);
 }
 
-function* updateCodeSaga() {
-  while(true) {
-    yield take( () => ({ type: 'update_code_action'}) );
+function* addSourceSaga() {
+  while (true) {
+    yield take(actions.NEW_SOURCE);
 
-    // update code in store and in LS
+    const existingSources = (yield select()).sourceFileStore.sourceFiles || [];
+    console.log(existingSources);
+    const newSource = ProjectService.createNewSourceFile(existingSources);
+
+    yield put(actions.addSourceFile(newSource));
   }
 }
 
 function* loadFromLocalStorage() {
-  console.log('Should load projects from local storage');
-  //yield put(REGISTER_LOADED_TO_STORE)
+  const sources = ProjectService.load();
+  yield put(actions.setSourceFiles(sources));
+  yield put(actions.setActiveSourceFileId(sources[0]?.id));
 }
