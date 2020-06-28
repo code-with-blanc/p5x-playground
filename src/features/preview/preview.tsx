@@ -1,6 +1,6 @@
 import React, { createRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { SourceFile } from '../../services/project/types/sourceFile';
+import { SourceFile } from '../../services/project/types';
 
 import runSourceFile from './interpreter';
 

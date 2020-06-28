@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { SourceFile } from '../../../../services/project/types/sourceFile';
+import { SourceFile } from '../../../../services/project/types';
 
 interface SourceFileRowProps {
   sourceFile: SourceFile;

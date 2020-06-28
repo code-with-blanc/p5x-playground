@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import SourceFileList from './sourceFileList';
 
-import { Actions } from '../../../../services/project/redux';
+import { actions } from '../../../../services/project';
 
 const mapStateToProps = ({ sourceFileStore }) => ({
   sourceFiles: sourceFileStore.sourceFiles,
@@ -10,7 +10,7 @@ const mapStateToProps = ({ sourceFileStore }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setSelected: (id) => dispatch(Actions.setActiveSourceFileId(id)),
+  setSelected: (id) => dispatch(actions.setActiveSourceFileId(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SourceFileList);

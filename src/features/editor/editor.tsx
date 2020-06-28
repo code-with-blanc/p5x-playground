@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import CustomSimpleEditor from './customSimpleEditor/CustomSimpleEditor';
-import { SourceFile } from '../../services/project/types/sourceFile';
+import { SourceFile } from '../../services/project/types';
 
 interface EditorProps {
   className?: string;

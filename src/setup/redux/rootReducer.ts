@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import sourceFileReducer from '../../services/project/redux';
+import sourceFileReducer from '../../services/project/redux/reducer';
 import ProjectState from '../../services/project/redux/projectState';
 
 export default combineReducers({

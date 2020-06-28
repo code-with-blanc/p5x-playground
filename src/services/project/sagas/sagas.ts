@@ -1,6 +1,7 @@
 import { all, take, put, select } from 'redux-saga/effects';
 
-import * as actions from './actions';
+import * as storeActions from '../redux/actions';
+import * as sagaActions from './actions';
 import ProjectService from '../projectService';
 
 export default function* rootProjectSaga() {
@@ -13,18 +14,18 @@ export default function* rootProjectSaga() {
 
 function* addSourceSaga() {
   while (true) {
-    yield take(actions.NEW_SOURCE);
+    yield take(sagaActions.ADD_SOURCE);
 
     const existingSources = (yield select()).sourceFileStore.sourceFiles || [];
     console.log(existingSources);
     const newSource = ProjectService.createNewSourceFile(existingSources);
 
-    yield put(actions.addSourceFile(newSource));
+    // yield put(storeActions.addSourceFile(newSource));
   }
 }
 
 function* loadFromLocalStorage() {
   const sources = ProjectService.load();
-  yield put(actions.setSourceFiles(sources));
-  yield put(actions.setActiveSourceFileId(sources[0]?.id));
+  yield put(storeActions.setSourceFiles(sources));
+  yield put(storeActions.setActiveSourceFileId(sources[0]?.id));
 }

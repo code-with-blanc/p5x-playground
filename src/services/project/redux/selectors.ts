@@ -1,5 +1,5 @@
 import { RootState } from '../../../setup/redux/rootReducer';
-import { SourceFile } from '..';
+import { SourceFile } from '../types';
 
 // eslint-disable-next-line import/prefer-default-export
 export function activeSourceFile(state: RootState) : SourceFile | null {

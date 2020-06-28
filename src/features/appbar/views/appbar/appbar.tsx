@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ClickableTextField } from '../../../../common/ClickableTextField/ClickableTextField';
-import { SourceFile } from '../../../../services/project/types/sourceFile';
+import { SourceFile } from '../../../../services/project/types';
 
 const AppBar = (props: AppbarProps) => {
   const [originalName, setOriginalName] = useState<string | undefined>('');

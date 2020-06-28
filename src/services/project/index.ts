@@ -1,7 +1,10 @@
-import { SourceFile } from './types/sourceFile';
-import ProjectService from './projectService';
-import * as Actions from './redux/actions';
+import * as storeActions from './redux/actions';
+import * as sagaActions from './sagas/actions';
+import * as selectors from './redux/selectors';
 
-export { SourceFile };
-export { Actions };
-export default ProjectService;
+const actions = {
+  ...storeActions,
+  ...sagaActions,
+};
+
+export { actions, selectors };

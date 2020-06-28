@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Sidebar from './sidebar';
-import { Actions } from '../../../../services/project/redux';
+import { actions } from '../../../../services/project';
 
 const mapStateToProps = ({ sourceFileStore }) => ({
   sourceFiles: sourceFileStore.sourceFiles,
@@ -9,8 +9,8 @@ const mapStateToProps = ({ sourceFileStore }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addSourceFile: () => dispatch(Actions.newSourceFile()),
-  removeSourceFile: (id) => dispatch(Actions.removeSourceFile(id)),
+  addSourceFile: () => dispatch(actions.newSourceFile()),
+  removeSourceFile: (id) => dispatch(actions.removeSourceFile(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

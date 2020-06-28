@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 import SourceFileRow from '../sourceFileRow';
-import { SourceFile } from '../../../../services/project/types/sourceFile';
+import { SourceFile } from '../../../../services/project/types';
 
 
 export const SourceFileList : React.FC<SourceFileListProps> = (props) => (

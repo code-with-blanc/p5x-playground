@@ -1,8 +1,8 @@
 import ProjectState from './projectState';
-import { SourceFile } from '..';
+import { SourceFile } from '../types';
 import {
   SourceFileAction,
-  ADD_SOURCE, REMOVE_SOURCE, SET_ACTIVE_SOURCE, SET_SOURCES_LIST, PATCH_SOURCE, PayloadTypes,
+  SET_ACTIVE_SOURCE, SET_SOURCES_LIST, PATCH_SOURCE, PayloadTypes,
 } from './actions';
 
 export const INITIAL_STATE: ProjectState = {
@@ -16,16 +16,6 @@ const reducer = (state = INITIAL_STATE, action: SourceFileAction<PayloadTypes>):
       return {
         ...state,
         sourceFiles: action.payload as SourceFile[],
-      };
-    case ADD_SOURCE:
-      return {
-        ...state,
-        sourceFiles: [...state.sourceFiles, action.payload as SourceFile],
-      };
-    case REMOVE_SOURCE:
-      return {
-        ...state,
-        sourceFiles: state.sourceFiles.filter((s) => s.id !== action.payload),
       };
     case SET_ACTIVE_SOURCE:
       return {
