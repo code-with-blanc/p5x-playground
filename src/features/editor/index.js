@@ -4,8 +4,8 @@ import { Selectors, Actions } from '../../services/project/redux';
 
 import Editor from './editor';
 
-const mapStateToProps = ({ sourceFileStore }) => ({
-  sourceFile: Selectors.activeSourceFile(sourceFileStore),
+const mapStateToProps = (state) => ({
+  sourceFile: Selectors.activeSourceFile(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

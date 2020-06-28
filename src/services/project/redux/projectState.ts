@@ -1,6 +1,6 @@
 import { SourceFile } from '../types/sourceFile';
 
-export interface ProjectState {
+export default interface ProjectState {
   sourceFiles: SourceFile[];
   activeSourceFileId: number | null;
 }

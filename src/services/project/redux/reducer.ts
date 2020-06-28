@@ -1,4 +1,4 @@
-import { ProjectState } from './projectState';
+import ProjectState from './projectState';
 import { SourceFile } from '..';
 import {
   SourceFileAction,

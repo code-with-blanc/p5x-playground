@@ -4,8 +4,8 @@ import { Selectors, Actions } from '../../../../services/project/redux';
 
 import AppBar from './appbar';
 
-const mapStateToProps = ({ sourceFileStore }) => ({
-  sourceFile: Selectors.activeSourceFile(sourceFileStore),
+const mapStateToProps = (state) => ({
+  sourceFile: Selectors.activeSourceFile(state),
   date: Date.now(),
 });
 
