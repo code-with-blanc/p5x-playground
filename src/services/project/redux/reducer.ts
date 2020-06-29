@@ -1,28 +1,25 @@
 import ProjectState from './projectState';
 import { SourceFile } from '../types';
-import {
-  SourceFileAction,
-  SET_ACTIVE_SOURCE, SET_SOURCES_LIST, PATCH_SOURCE, PayloadTypes,
-} from './actions';
+import { ProjectAction } from './actions';
 
 export const INITIAL_STATE: ProjectState = {
   sourceFiles: [],
   activeSourceFileId: null,
 };
 
-const reducer = (state = INITIAL_STATE, action: SourceFileAction<PayloadTypes>): ProjectState => {
+const reducer = (state = INITIAL_STATE, action: ProjectAction): ProjectState => {
   switch (action.type) {
-    case SET_SOURCES_LIST:
+    case 'project/SET_FILES':
       return {
         ...state,
-        sourceFiles: action.payload as SourceFile[],
+        sourceFiles: action.payload,
       };
-    case SET_ACTIVE_SOURCE:
+    case 'project/SET_ACTIVE_FILE':
       return {
         ...state,
         activeSourceFileId: action.payload as number,
       };
-    case PATCH_SOURCE:
+    case 'project/PATCH_FILE':
       return {
         ...state,
         sourceFiles: state.sourceFiles.map((s) => {

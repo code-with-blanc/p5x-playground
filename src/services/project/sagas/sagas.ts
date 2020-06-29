@@ -14,7 +14,7 @@ export default function* rootProjectSaga() {
 
 function* addSourceSaga() {
   while (true) {
-    yield take(sagaActions.ADD_SOURCE);
+    yield take(sagaActions.CREATE_SOURCE);
 
     const existingSources = (yield select()).sourceFileStore.sourceFiles || [];
     console.log(existingSources);
@@ -26,6 +26,6 @@ function* addSourceSaga() {
 
 function* loadFromLocalStorage() {
   const sources = ProjectService.load();
-  yield put(storeActions.setSourceFiles(sources));
-  yield put(storeActions.setActiveSourceFileId(sources[0]?.id));
+  yield put(storeActions.setFileList(sources));
+  yield put(storeActions.setActiveFileId(sources[0]?.id));
 }

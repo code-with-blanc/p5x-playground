@@ -1,47 +1,34 @@
 import { SourceFile } from '../types';
 
-// Types
-export const SET_SOURCES_LIST = 'project/SET_LIST';
-export const ADD_SOURCE = 'project/ADD_SOURCE';
-export const REMOVE_SOURCE = 'project/REMOVE_SOURCE';
-export const SET_ACTIVE_SOURCE = 'project/SET_ACTIVE_SOURCE';
-export const PATCH_SOURCE = 'project/PATCH_SOURCE';
-export const NEW_SOURCE = 'project/NEW_SOURCE';
-
-export interface SourceFileAction<TPayload = null> {
-  type: string;
-  payload: TPayload;
-}
-
-export type PayloadTypes = number | SourceFile | SourceFile[] | Partial<SourceFile>;
-
 // Action Creators
-export const setSourceFiles = (sourceFiles: SourceFile []) : SourceFileAction<SourceFile[]> => ({
-  type: SET_SOURCES_LIST,
-  payload: sourceFiles,
-});
+export const setFileList = (files: SourceFile[]) => ({
+  type: 'project/SET_FILES',
+  payload: files,
+} as const);
 
-export const addSourceFile = (newSource: SourceFile) : SourceFileAction<SourceFile> => ({
-  type: ADD_SOURCE,
-  payload: newSource,
-});
+export const appendFile = (file: SourceFile) => ({
+  type: 'project/APPEND_FILE',
+  payload: file,
+} as const);
 
-export const removeSourceFile = (id: number) : SourceFileAction<number> => ({
-  type: REMOVE_SOURCE,
+export const removeFile = (id: number) => ({
+  type: 'project/REMOVE_FILE',
   payload: id,
-});
+} as const);
 
-export const setActiveSourceFileId = (id: number) : SourceFileAction<number> => ({
-  type: SET_ACTIVE_SOURCE,
+export const setActiveFileId = (id: number) => ({
+  type: 'project/SET_ACTIVE_FILE',
   payload: id,
-});
+} as const);
 
-export const patchSourceFile = (patch: Partial<SourceFile>) : SourceFileAction<Partial<SourceFile>> => ({
-  type: PATCH_SOURCE,
+export const patchFile = (patch: Partial<SourceFile>) => ({
+  type: 'project/PATCH_FILE',
   payload: patch,
-});
+} as const);
 
-// alias
-export const updateCode = (id: number, newCode: string) => {
-  return patchSourceFile({ id, code: newCode });
-};
+export type ProjectAction =
+  | ReturnType<typeof setFileList>
+  | ReturnType<typeof appendFile>
+  | ReturnType<typeof removeFile>
+  | ReturnType<typeof setActiveFileId>
+  | ReturnType<typeof patchFile>
