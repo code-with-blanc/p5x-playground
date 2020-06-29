@@ -21,9 +21,9 @@ export const setActiveFileId = (id: number) => ({
   payload: id,
 } as const);
 
-export const patchFile = (patch: Partial<SourceFile>) => ({
+export const patchFile = (id: number, patch: Partial<SourceFile>) => ({
   type: 'project/PATCH_FILE',
-  payload: patch,
+  payload: { id, patch },
 } as const);
 
 export type ProjectAction =

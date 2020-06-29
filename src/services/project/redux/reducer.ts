@@ -1,5 +1,4 @@
 import ProjectState from './projectState';
-import { SourceFile } from '../types';
 import { ProjectAction } from './actions';
 
 export const INITIAL_STATE: ProjectState = {
@@ -14,6 +13,16 @@ const reducer = (state = INITIAL_STATE, action: ProjectAction): ProjectState => 
         ...state,
         sourceFiles: action.payload,
       };
+    case 'project/APPEND_FILE':
+      return {
+        ...state,
+        sourceFiles: [...state.sourceFiles, action.payload],
+      };
+    case 'project/REMOVE_FILE':
+      return {
+        ...state,
+        sourceFiles: state.sourceFiles.filter((f) => f.id !== action.payload),
+      };
     case 'project/SET_ACTIVE_FILE':
       return {
         ...state,
@@ -23,8 +32,8 @@ const reducer = (state = INITIAL_STATE, action: ProjectAction): ProjectState => 
       return {
         ...state,
         sourceFiles: state.sourceFiles.map((s) => {
-          const patch = action.payload as Partial<SourceFile>;
-          if (s.id === patch?.id) {
+          const { patch, id } = action.payload;
+          if (s.id === id) {
             return {
               ...s,
               ...patch,
