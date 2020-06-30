@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateCode: (id, value) => dispatch(actions.updateCode(id, value)),
+  updateCode: (id, newCode) => dispatch(actions.updateSource(id, newCode)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Editor);

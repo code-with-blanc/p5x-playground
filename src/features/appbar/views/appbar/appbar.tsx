@@ -9,7 +9,7 @@ const AppBar = (props: AppbarProps) => {
   const updateName = (name?: string) => {
     if (props.sourceFile) {
       const newSourceFile = Object.assign(props.sourceFile, { name: name ?? '' });
-      props.patchSourceFile(newSourceFile);
+      props.renameFile(newSourceFile);
     }
   };
 
@@ -46,7 +46,7 @@ const Container = styled.div`
 interface AppbarProps {
   className?: string;
   sourceFile?: SourceFile;
-  patchSourceFile: (sourceFile: SourceFile) => void;
+  renameFile: (sourceFile: SourceFile) => void;
 }
 
 export default AppBar;

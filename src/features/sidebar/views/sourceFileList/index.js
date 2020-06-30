@@ -10,7 +10,7 @@ const mapStateToProps = ({ sourceFileStore }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setSelected: (id) => dispatch(actions.setActiveSourceFileId(id)),
+  setSelected: (id) => dispatch(actions.setActiveFileId(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SourceFileList);

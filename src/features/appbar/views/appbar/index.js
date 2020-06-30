@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  patchSourceFile: (id, name) => dispatch(actions.patchSourceFile(id, { name })),
+  renameFile: (id, name) => dispatch(actions.renameFile(id, name)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppBar);

@@ -9,8 +9,8 @@ const mapStateToProps = ({ sourceFileStore }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addSourceFile: () => dispatch(actions.newSourceFile()),
-  removeSourceFile: (id) => dispatch(actions.removeSourceFile(id)),
+  addSourceFile: () => dispatch(actions.newSource()),
+  removeSourceFile: (id) => dispatch(actions.deleteFile(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
