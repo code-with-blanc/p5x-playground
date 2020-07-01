@@ -3,7 +3,7 @@ import { SourceFile } from './types/sourceFile';
 import defaultSourceFiles from './defaultSources.js';
 
 const LS_STORAGE = 'sourceFiles';
-  
+
 class ProjectService {
   public static createNewSourceFile(existingSources : SourceFile[]) : SourceFile {
     const maxId = existingSources.reduce((max, s) => (s.id > max ? s.id : max), 0);
