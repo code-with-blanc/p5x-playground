@@ -20,6 +20,6 @@ export function* deleteFile(action: ReturnType<typeof actions.deleteFile>) {
   let files = selectors.files(yield select());
   files = files.filter((f) => f.id !== id);
 
-  ProjectService.saveSources(files);
+  ProjectService.saveFiles(files);
   yield put(storeActions.setFileList(files));
 }

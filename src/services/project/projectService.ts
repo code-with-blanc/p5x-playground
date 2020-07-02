@@ -20,7 +20,6 @@ class ProjectService {
       // eslint-disable-next-line no-undef
       const stored = window?.localStorage?.getItem(LS_STORAGE);
       const files = JSON.parse(stored || '');
-      console.log(files);
 
       if (Array.isArray(files) && files.length > 0) {
         return files;
@@ -32,7 +31,7 @@ class ProjectService {
     return defaultFiles;
   }
 
-  public static saveSources(sources : SourceFile[]) {
+  public static saveFiles(sources : SourceFile[]) {
     // eslint-disable-next-line no-undef
     window.localStorage.setItem(LS_STORAGE, JSON.stringify(sources));
   }

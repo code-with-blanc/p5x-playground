@@ -19,6 +19,6 @@ export function* newSource() {
   const existingFiles = yield select(selectors.files);
   const filesToAdd = yield call(ProjectService.createNewSourceFile, existingFiles);
 
-  ProjectService.saveSources([...existingFiles, filesToAdd]);
+  ProjectService.saveFiles([...existingFiles, filesToAdd]);
   yield put(storeActions.appendFile(filesToAdd));
 }

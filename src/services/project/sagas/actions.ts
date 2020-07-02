@@ -7,9 +7,9 @@ export const updateSource = (fileId: number, newCode: string) => ({
   payload: { fileId, newCode },
 } as const);
 
-export const renameFile = (newName: string) => ({
+export const renameFile = (id: number, newName: string) => ({
   type: 'project/sagas/RENAME_FILE',
-  payload: { newName },
+  payload: { id, newName },
 } as const);
 
 export const deleteFile = (id: number) => ({
