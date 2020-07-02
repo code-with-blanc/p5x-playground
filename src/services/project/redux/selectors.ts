@@ -9,6 +9,6 @@ export function activeSourceFile(state: RootState) : SourceFile | null {
   return sourcesFiles.find((s) => s.id === activeId) || null;
 }
 
-export function sources(state: RootState) : SourceFile[] {
+export function files(state: RootState) : SourceFile[] {
   return state?.sourceFileStore?.sourceFiles || [];
 }

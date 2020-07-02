@@ -2,10 +2,10 @@ import {
   call, take, select, put,
 } from 'redux-saga/effects';
 
-import type { RootState } from '../../../setup/redux/rootReducer';
 import type { SagaActionType } from './actions';
 
 import * as storeActions from '../redux/actions';
+import * as selectors from '../redux/selectors';
 import ProjectService from '../projectService';
 
 export function* watchNewSource() {
@@ -16,8 +16,9 @@ export function* watchNewSource() {
 }
 
 export function* newSource() {
-  const existingSources = yield select((state : RootState) => state.sourceFileStore.sourceFiles || []);
-  const sourceToAdd = yield call(ProjectService.createNewSourceFile, existingSources);
+  const existingFiles = yield select(selectors.files);
+  const filesToAdd = yield call(ProjectService.createNewSourceFile, existingFiles);
 
-  yield put(storeActions.appendFile(sourceToAdd));
+  ProjectService.saveSources([...existingFiles, filesToAdd]);
+  yield put(storeActions.appendFile(filesToAdd));
 }

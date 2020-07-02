@@ -1,6 +1,6 @@
 import { SourceFile } from './types/sourceFile';
 
-import defaultSourceFiles from './defaultSources.js';
+import defaultFiles from './defaultSources.js';
 
 const LS_STORAGE = 'sourceFiles';
 
@@ -16,18 +16,25 @@ class ProjectService {
   }
 
   public static load() : SourceFile [] {
-    // eslint-disable-next-line no-undef
-    const stored = window?.localStorage?.getItem(LS_STORAGE);
-    if (stored) {
-      return JSON.parse(stored) || defaultSourceFiles;
+    try {
+      // eslint-disable-next-line no-undef
+      const stored = window?.localStorage?.getItem(LS_STORAGE);
+      const files = JSON.parse(stored || '');
+      console.log(files);
+
+      if (Array.isArray(files) && files.length > 0) {
+        return files;
+      }
+    } catch {
+      return defaultFiles;
     }
 
-    return defaultSourceFiles;
+    return defaultFiles;
   }
 
-  private static saveSources(sources : SourceFile[]) {
+  public static saveSources(sources : SourceFile[]) {
     // eslint-disable-next-line no-undef
-    localStorage.setItem(LS_STORAGE, JSON.stringify(sources));
+    window.localStorage.setItem(LS_STORAGE, JSON.stringify(sources));
   }
 }
 
