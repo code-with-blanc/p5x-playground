@@ -2,9 +2,9 @@ export const newSource = () => ({
   type: 'project/sagas/NEW_SOURCE',
 } as const);
 
-export const updateSource = (fileId: number, newCode: string) => ({
+export const updateSource = (id: number, newCode: string) => ({
   type: 'project/sagas/UPDATE_SOURCE',
-  payload: { fileId, newCode },
+  payload: { id, newCode },
 } as const);
 
 export const renameFile = (id: number, newName: string) => ({
