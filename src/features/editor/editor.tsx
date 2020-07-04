@@ -9,6 +9,7 @@ interface EditorProps {
   count?: number;
   sourceFile?: SourceFile;
   updateCode: (id: number, value: string) => void;
+  requestBuild: () => void;
 }
 
 const Div = styled.div`
@@ -26,6 +27,7 @@ const Editor : React.FC<EditorProps> = (props) => {
           const id = props.sourceFile?.id;
           if (id) {
             props.updateCode(id, value);
+            props.requestBuild();
           }
         }}
       />
