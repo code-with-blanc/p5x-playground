@@ -7,39 +7,35 @@ import IconAdd from '@material-ui/icons/Add';
 import Button from '../../../../common/Button/Button';
 
 import SourceFileList from '../sourceFileList';
+import Console from '../console';
 
-class Sidebar extends React.Component {
-  props: SidebarProps;
+const Sidebar : React.FC<SidebarProps> = ({
+  className, addSourceFile, removeSourceFile, activeSourceFileId,
+}) => {
+  return (
+    <Container className={className}>
+      <Button
+        className="button-add"
+        color="green"
+        onClick={addSourceFile}
+      >
+        <IconAdd />
+      </Button>
 
-  constructor(props: SidebarProps) {
-    super(props);
-    this.props = props;
-  }
+      <Button
+        className="button-delete"
+        color="Red"
+        onClick={() => removeSourceFile(activeSourceFileId)}
+      >
+        <IconDelete />
+      </Button>
 
-  render() {
-    return (
-      <Container className={this.props.className}>
-        <SourceFileList className="list" />
+      <SourceFileList className="list" />
 
-        <Button
-          className="button-add"
-          color="green"
-          onClick={this.props.addSourceFile}
-        >
-          <IconAdd />
-        </Button>
-
-        <Button
-          className="button-delete"
-          color="Red"
-          onClick={() => this.props.removeSourceFile(this.props.activeSourceFileId)}
-        >
-          <IconDelete />
-        </Button>
-      </Container>
-    );
-  }
-}
+      <Console className="console" />
+    </Container>
+  );
+};
 
 const Container = styled.div`
   position: relative;
@@ -49,14 +45,15 @@ const Container = styled.div`
   background-color: ${(props) => props.theme.palette.background.default};
 
   display: grid;
-  grid-template-rows: 1fr 64px;
+  grid-template-rows: 48px 1fr 1fr;
   grid-template-columns: 70% 30%;
   grid-template-areas:
+    "add delete"
     "list list"
-    "add delete";
-
+    "console console";
 
   & .list {
+    margin-top: 12px;
     grid-area: list;
   }
 
@@ -68,6 +65,11 @@ const Container = styled.div`
   & .button-delete {
     grid-area: delete;
     margin: 12px 6px;
+  }
+
+  & .console {
+    background: black;
+    grid-area: console;
   }
 `;
 
