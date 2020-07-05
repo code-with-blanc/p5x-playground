@@ -41,6 +41,8 @@ module.exports = {
     'import/no-unresolved': ['off'],
     'import/extensions': ['off'],
     'react/destructuring-assignment': ['off', 'always'],
+    
+    'no-useless-constructor': ['off'],
 
     // style
     'max-len': ['warn', 120],

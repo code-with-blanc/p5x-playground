@@ -1,4 +1,4 @@
-export class SourceFile {
+export default class SourceFile {
   constructor(
     public id : number,
     public name : string,
