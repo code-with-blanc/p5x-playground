@@ -8,6 +8,7 @@ type Log = {
   data: any[];
 }
 
+// TODO: create store to feed console, incorporate into UI
 const Console : React.FC<{ className?: string; }> = ({ className }) => {
   const [logs, setLogs] = useState<Log[]>([]);
   useEffect(() => {
