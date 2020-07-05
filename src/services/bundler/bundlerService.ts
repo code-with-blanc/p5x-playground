@@ -2,8 +2,9 @@
 import { Project } from '../project/types';
 
 export class BundlerService {
-  public compile(project: Project) {
+  public build(project: Project) : string {
     console.log(`Should compile project "${project.name}"`);
+    return '// This should be the bundled code';
   }
 }
 
