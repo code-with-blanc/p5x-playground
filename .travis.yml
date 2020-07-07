@@ -13,22 +13,20 @@ cache:
   directories:
   - node_modules
 
-jobs:
-  include:
-    - stage: test
-      script: npm test -- --all --coverage
-    - stage: test
-      script: sonar-scanner
-    - stage: build
-      script: npm run build
-    - stage: deploy
-      deploy:
-        skip_cleanup: true
-        provider: pages
-        github_token: $GITHUB_TOKEN
-        keep_history: true
-        local_dir: ./build
-        repo: pedroblanc/pedroblanc.github.io
-        target_branch: master
-        on:
-          branch: master
+test:
+  - script: npm test -- --all --coverage
+  - script: sonar-scanner
+
+build:
+  - script: npm run build
+
+  deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  local_dir: ./build
+  repo: pedroblanc/pedroblanc.github.io
+  target_branch: master
+  on:
+    branch: master
