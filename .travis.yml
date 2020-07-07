@@ -17,16 +17,17 @@ jobs:
   include:
     - stage: test
       script: npm test -- --all --coverage
+    - stage: test
       script: sonar-scanner
     - stage: build
       script: npm run build
-
-deploy:
-  provider: pages
-  github_token: $GITHUB_TOKEN
-  keep_history: true
-  local_dir: ./build
-  repo: pedroblanc/pedroblanc.github.io
-  target_branch: master
-  on:
-    branch: master
+    - stage: deploy
+      deploy:
+        provider: pages
+        github_token: $GITHUB_TOKEN
+        keep_history: true
+        local_dir: ./build
+        repo: pedroblanc/pedroblanc.github.io
+        target_branch: master
+        on:
+          branch: master
