@@ -17,11 +17,10 @@ jobs:
   include:
     - stage: test
       script: npm test -- --all --coverage
-    - stage: test
-      script: sonar-scanner
+    - script: sonar-scanner
     - stage: deploy
       script: npm run build
-      deploy:
+    - deploy:
         provider: pages
         github_token: $GITHUB_TOKEN
         keep_history: true
