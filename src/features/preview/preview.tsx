@@ -1,18 +1,16 @@
 import React, { createRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { SourceFile } from '../../services/project/types';
 
 import runSourceFile from './interpreter';
 
 export const Preview : React.FC<Props> = ({
-  className, sourceFile,
+  className, bundle,
 }) => {
-  const code = sourceFile?.code;
   const canvasRef = createRef<HTMLCanvasElement>();
 
   useEffect(() => {
-    runSourceFile(code, canvasRef);
-  }, [code, canvasRef]);
+    runSourceFile(bundle, canvasRef);
+  }, [bundle, canvasRef]);
 
   return (
     <div className={className}>
@@ -23,7 +21,7 @@ export const Preview : React.FC<Props> = ({
 
 interface Props {
   className?: string;
-  sourceFile?: SourceFile;
+  bundle?: string;
 }
 
 export default styled(Preview)`

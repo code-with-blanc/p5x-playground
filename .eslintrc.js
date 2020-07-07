@@ -43,6 +43,8 @@ module.exports = {
     'react/destructuring-assignment': ['off', 'always'],
     
     'no-useless-constructor': ['off'],
+    'no-plusplus': ['error', { 'allowForLoopAfterthoughts': true }],
+
 
     // style
     'max-len': ['warn', 120],
