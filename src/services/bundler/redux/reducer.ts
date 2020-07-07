@@ -16,7 +16,7 @@ const reducer = (state = INITIAL_STATE, action: BundlerAction): BundlerState => 
     case 'bundler/FINISH_BUILD':
       return {
         ...state,
-        isBuilding: true,
+        isBuilding: false,
         bundle: action.payload.bundle,
       };
     default:
