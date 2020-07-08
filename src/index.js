@@ -4,6 +4,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import commitNumber from './commit_number';
+
+// eslint-disable-next-line no-console
+console.log(`Playground version ${(commitNumber || '').slice(-8)}`);
+
+// eslint-disable-next-line no-undef
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
