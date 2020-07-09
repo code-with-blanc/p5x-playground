@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ClickableTextField } from '../../../../common/ClickableTextField/ClickableTextField';
 import { SourceFile } from '../../../../services/project/types';
+import BuildIndicator from '../buildIndicator';
 
 const AppBar = (props: AppbarProps) => {
   const [originalName, setOriginalName] = useState<string | undefined>('');
@@ -28,6 +29,8 @@ const AppBar = (props: AppbarProps) => {
         }}
         onChange={(value) => { updateName(value); }}
       />
+
+      <BuildIndicator />
     </Container>
   );
 };
@@ -39,7 +42,7 @@ const Container = styled.div`
   padding-right: 4px;
 
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr auto;
   align-items: center;
 `;
 

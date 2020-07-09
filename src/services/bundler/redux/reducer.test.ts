@@ -7,6 +7,7 @@ describe('Bundler reducer', () => {
   it('begin build', () => {
     const initialState : BundlerState = {
       isBuilding: false,
+      buildError: null,
       bundle: null,
     };
     
@@ -21,6 +22,7 @@ describe('Bundler reducer', () => {
   it('finish build', () => {
     const initialState : BundlerState = {
       isBuilding: true,
+      buildError: null,
       bundle: null,
     };
     const bundle = 'my bundle yay!';
@@ -31,6 +33,26 @@ describe('Bundler reducer', () => {
     );
 
     expect(result.isBuilding).toEqual(false);
+    expect(result.buildError).toEqual(null);
     expect(result.bundle).toEqual(bundle);
+  });
+
+
+  it('finish build with error', () => {
+    const initialState : BundlerState = {
+      isBuilding: true,
+      buildError: null,
+      bundle: null,
+    };
+    const error = new Error('MyError');
+
+    const result = reducer(
+      initialState,
+      actions.finishBuildError(error),
+    );
+
+    expect(result.isBuilding).toEqual(false);
+    expect(result.buildError).toEqual(error);
+    expect(result.bundle).toEqual(null);
   });
 });

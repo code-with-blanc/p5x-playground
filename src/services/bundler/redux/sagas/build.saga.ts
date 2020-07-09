@@ -33,14 +33,14 @@ export function* build(action : ReturnType<typeof actions.requestBuild>) {
       }
     }
 
-    const bundle = (yield call(BundlerService.bundle, transpiledFiles, files[0].name) as unknown) as string;
+    const bundle : string = yield call(BundlerService.bundle, transpiledFiles, files[0].name);
 
     console.log('Build done');
     console.log({ bundle });
     yield put(storeActions.finishBuild(bundle));
   } catch (e) {
     console.error('Build error!', e);
-    yield put(storeActions.finishBuild('// Build error ocurred'));
+    yield put(storeActions.finishBuildError(e));
   }
 
   yield delay(200);
