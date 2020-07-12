@@ -6,6 +6,7 @@ import IconAdd from '@material-ui/icons/Add';
 
 import Button from '../../../../common/Button/Button';
 
+import Console from '../../../console';
 import SourceFileList from '../sourceFileList';
 
 const Sidebar : React.FC<SidebarProps> = ({
@@ -30,6 +31,8 @@ const Sidebar : React.FC<SidebarProps> = ({
       >
         <IconDelete />
       </Button>
+
+      <Console className="console" />
     </Container>
   );
 };
@@ -42,11 +45,12 @@ const Container = styled.div`
   background-color: ${(props) => props.theme.palette.background.default};
 
   display: grid;
-  grid-template-rows: 1fr 64px;
+  grid-template-rows: 1fr 64px 1fr;
   grid-template-columns: 70% 30%;
   grid-template-areas:
     "list list"
-    "add delete";
+    "add delete"
+    "console console";
 
   & .list {
     margin-top: 12px;
@@ -61,6 +65,11 @@ const Container = styled.div`
   & .button-delete {
     grid-area: delete;
     margin: 12px 6px;
+  }
+
+  & .console {
+    grid-area: console;
+    background-color: black;
   }
 `;
 
