@@ -70,6 +70,7 @@ const Container = styled.div`
   & .console {
     grid-area: console;
     background-color: black;
+    overflow-y: auto;
   }
 `;
 

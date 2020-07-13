@@ -25,6 +25,11 @@ const reducer = (state = INITIAL_STATE, action: ConsoleAction): ConsoleState => 
         } as Message],
         nextId: state.nextId + 1,
       };
+    case 'console/CLEAR':
+      return {
+        ...state,
+        messages: [],
+      };
     default:
       return state;
   }

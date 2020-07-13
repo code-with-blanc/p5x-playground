@@ -19,4 +19,9 @@ describe('Console reducer', () => {
     expect(result.messages[0].method).toEqual('log');
     expect(result.messages[0].data).toEqual('my message');
   });
+
+  it('clears console', () => {
+    const testIsWritten = false;
+    expect(testIsWritten).toEqual(true);
+  });
 });
