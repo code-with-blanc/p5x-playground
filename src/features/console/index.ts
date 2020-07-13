@@ -1,3 +1,12 @@
-import Console from './console';
+import { connect } from 'react-redux';
 
-export default Console;
+import Console from './console';
+import { RootState } from '../../setup/redux/rootReducer';
+
+const mapStateToProps = (state : RootState) => ({
+  messages: state.console.messages,
+});
+
+export type ConnectedProps = ReturnType<typeof mapStateToProps>;
+
+export default connect(mapStateToProps)(Console);

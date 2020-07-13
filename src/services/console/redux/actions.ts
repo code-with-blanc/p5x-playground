@@ -1,16 +1,14 @@
-import type { Message, Method } from '../types';
+import type { Methods } from '../types';
 
 export const log = (content: unknown) => {
   return putMessage('log', [content || '']);
 };
 
-const putMessage = (method: Method, args: unknown[]) => ({
+const putMessage = (method: Methods, args: unknown[]) => ({
   type: 'console/PUT_MESSAGE',
   payload: {
-    message: {
-      method,
-      args,
-    } as Message,
+    method,
+    args,
   },
 } as const);
 

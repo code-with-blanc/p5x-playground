@@ -1,6 +1,7 @@
-import { Method } from '.';
+import { Methods } from '.';
 
 export type Message = {
-  method: Method;
-  args: unknown[];
+  id: string;
+  method: Methods;
+  data: unknown[];
 }

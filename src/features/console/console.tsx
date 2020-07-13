@@ -1,29 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { Console as ConsoleFeed } from 'console-feed';
 
-type Log = {
-  id: string;
-  method: 'log' | 'warn' | 'error' | 'info';
-  data: any[];
+import type { ConnectedProps } from './index';
+
+type OwnProps = {
+  className?: string;
 }
 
 // TODO: create store to feed console, incorporate into UI
-const Console : React.FC<{ className?: string; }> = ({ className }) => {
-  const [logs, setLogs] = useState<Log[]>([]);
-  useEffect(() => {
-    setLogs([{ id: '1', method: 'info', data: ['Some message'] }]);
-
-    setTimeout(() => {
-      setLogs((previousLogs) => {
-        return [...previousLogs, { id: '2', method: 'error', data: ['Delayed message'] }];
-      });
-    }, 2000);
-  }, [setLogs]);
-
+const Console : React.FC<ConnectedProps & OwnProps> = ({ className, messages }) => {
   return (
     <div className={className}>
-      <ConsoleFeed logs={logs} variant="dark" />
+      <ConsoleFeed logs={messages} variant="dark" />
     </div>
   );
 };
