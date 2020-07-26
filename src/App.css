@@ -10,10 +10,10 @@
 
   display: grid;
   grid-template-rows: 48px calc(100vh - 48px);
-  grid-template-columns: 1fr max(300px, 20%);
+  grid-template-columns: max(300px, 20%) 1fr;
   grid-template-areas:
-    "appbar appbar"
-    "editor sidebar";
+    "sidebar appbar"
+    "sidebar editor";
 }
 
 .appbar {
@@ -29,6 +29,6 @@
 .sidebar {
   grid-area: sidebar;
 
-  border-left: solid #ACD7EC 2px;
+  border-right: solid #ACD7EC 2px;
 }
 

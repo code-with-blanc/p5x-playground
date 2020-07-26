@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import IconDelete from '@material-ui/icons/Delete';
 import IconAdd from '@material-ui/icons/Add';
 
-import { Button, Select } from '../../../../common';
+import { Button } from '../../../../common';
 
 import Console from '../../../console';
 import SourceFileList from '../sourceFileList';
@@ -14,15 +14,6 @@ const Sidebar : React.FC<SidebarProps> = ({
 }) => {
   return (
     <Container className={className}>
-      <Select
-        value={3}
-        items={[
-          { value: 1, label: 'item 1' },
-          { value: 2, label: 'item 2' },
-          { value: 3, label: 'item 3' },
-        ]}
-        onChange={(e) => console.log(e)}
-      />
 
       <SourceFileList className="list" />
 
