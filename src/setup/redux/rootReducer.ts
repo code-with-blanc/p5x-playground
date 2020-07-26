@@ -2,16 +2,14 @@ import { combineReducers } from 'redux';
 
 import sourceFileReducer from '../../services/project/redux/reducer';
 import bundlerReducer from '../../services/bundler/redux/reducer';
+import consoleReducer from '../../services/console/redux/reducer';
 
-import type ProjectState from '../../services/project/redux/projectState';
-import type BundlerState from '../../services/bundler/redux/bundlerState';
-
-export default combineReducers({
+const rootReducer = combineReducers({
   sourceFileStore: sourceFileReducer,
   bundler: bundlerReducer,
+  console: consoleReducer,
 });
 
-export type RootState = {
-  sourceFileStore: ProjectState;
-  bundler: BundlerState;
-};
+export default rootReducer;
+
+export type RootState = ReturnType<typeof rootReducer>;

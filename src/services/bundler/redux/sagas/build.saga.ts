@@ -1,47 +1,70 @@
 import {
-  debounce, delay, put, select, call,
+  debounce, put, select, call,
 } from 'redux-saga/effects';
 
-import * as actions from './actions';
-import * as storeActions from '../actions';
+import * as console from '../../../console';
+import * as project from '../../../project';
+
 import BundlerService from '../../bundlerService';
-import { selectors } from '../../../project';
+import * as sagaActions from './actions';
+import * as storeActions from '../actions';
+
+// eslint-disable-next-line no-undef
+const browserConsole = window?.console;
 
 export function* watchRequestBuild() {
-  yield debounce(1000, actions.types.ReqBuild, build);
+  yield debounce(1000, sagaActions.types.ReqBuild, build);
 }
 
-export function* build(action : ReturnType<typeof actions.requestBuild>) {
-  const state = yield select();
-  const files = selectors.files(state);
-  const entryPoint = files[0].name;
-
-  console.log(`Starting build for projectId ${action.payload.projectId} with ${files.length} files`);
-  console.log(`Entry point is ${entryPoint}`);
-  yield put(storeActions.beginBuild());
-
+export function* build() {
+  yield put(console.actions.clear());
+  yield put(console.actions.info('Starting Build...'));
+  
   try {
-    const transpiledFiles = [];
-    for (let i = 0; i < files.length; i++) {
+    const state = yield select();
+    const files = project.selectors.files(state);
+    const entryPoint = files[0].name;
+
+    yield put(console.actions.info(`Entry point is ${entryPoint}`));
+    yield put(storeActions.beginBuild());
+
+    try {
+      const transpiledFiles = [];
+      for (let i = 0; i < files.length; i++) {
+        try {
+          const transpiled = BundlerService.transpile(files[i]);
+          transpiledFiles.push(transpiled);
+        } catch (e) {
+          yield put(console.actions.error(`Transpilation error in file ${files[i].name}`));
+          yield put(console.actions.error(e));
+          yield put(console.actions.error(e.message));
+
+          throw e;
+        }
+      }
+
+      let bundle = '';
       try {
-        const transpiled = BundlerService.transpile(files[i]);
-        transpiledFiles.push(transpiled);
+        bundle = yield call(BundlerService.bundle, transpiledFiles, files[0].name);
       } catch (e) {
-        console.error(`Transpilation error in file ${files[i].name}`);
-        console.error(e);
+        yield put(console.actions.error('Error at project bundling'));
+        yield put(console.actions.error(e));
+        yield put(console.actions.error(e.message));
+
         throw e;
       }
+
+      yield put(console.actions.info('Build complete!'));
+      browserConsole.log('Build complete!');
+      browserConsole.log({ bundle });
+
+      yield put(storeActions.finishBuild(bundle));
+    } catch (e) {
+      yield put(storeActions.finishBuildError(e));
+      throw e;
     }
-
-    const bundle : string = yield call(BundlerService.bundle, transpiledFiles, files[0].name);
-
-    console.log('Build done');
-    console.log({ bundle });
-    yield put(storeActions.finishBuild(bundle));
   } catch (e) {
-    console.error('Build error!', e);
-    yield put(storeActions.finishBuildError(e));
+    browserConsole.log({ errorObj: e });
+    // browserConsole.error('Error in build saga', e);
   }
-
-  yield delay(200);
 }
