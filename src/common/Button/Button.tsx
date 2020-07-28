@@ -9,16 +9,18 @@ const Button : React.FC<Props> = ({
   children, color, theme, ...rest
 }) => (
   <StyledButton
-    children={children ?? <IconMore />}
     color={getColor(color, theme)}
     theme={theme}
+    // eslint-disable-next-line react/jsx-props-no-spreading
     {...rest}
-  />
+  >
+    {children ?? <IconMore />}
+  </StyledButton>
 );
 
 const StyledButton = styled<any>(ButtonBase)`
-  min-height: 32px;
-  margin: 4px;
+  min-height: 24px;
+  width: 100%;
   padding: 4px 8px;
   border-radius: 5px;
   color: ${({ color }) => color.contrastText};
