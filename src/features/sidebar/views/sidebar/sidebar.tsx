@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import IconDelete from '@material-ui/icons/Delete';
@@ -13,24 +13,10 @@ import ProjectSelect from '../projectSelect';
 const Sidebar : React.FC<SidebarProps> = ({
   className, addSourceFile, removeSourceFile, activeSourceFileId,
 }) => {
-  const [prj, setPrj] = useState(0);
-  const prjs = [
-    { value: 0, label: 'Item 0' },
-    { value: 1, label: 'Item 1' },
-    { value: 2, label: 'Item 2' },
-    { value: 3, label: 'Item 3' },
-    { value: 4, label: 'Item 4' },
-    { value: 5, label: 'Item 5' },
-  ];
-
   return (
     <Container className={className}>
       <div className="select-project">
-        <ProjectSelect
-          value={prj}
-          items={prjs}
-          onChange={(value) => { setPrj(value); }}
-        />
+        <ProjectSelect />
       </div>
 
       <SourceFileList className="list" />

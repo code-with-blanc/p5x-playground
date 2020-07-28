@@ -2,6 +2,9 @@ import ProjectState from './projectState';
 import { ProjectAction } from './actions';
 
 export const INITIAL_STATE: ProjectState = {
+  projects: [],
+  activeProjectId: null,
+
   sourceFiles: [],
   activeSourceFileId: null,
 };

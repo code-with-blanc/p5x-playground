@@ -6,71 +6,93 @@ import {
 } from '@material-ui/core';
 
 import { Button } from '../../../../common';
+import { Project } from '../../../../services/project/types';
 
-type Item = { value: number, label: string };
 type Props = {
-  value: number;
-  items: Item[];
-  onChange: (value: number) => unknown;
-  className?: string,
+  className?: string;
+  projects: Project[];
+  activeProjectId: number | null;
+  setActiveProject?: (id: number) => unknown;
+  createNewProject?: () => unknown;
 }
 
-const ProjectSelect : React.FC<Props> = ({
-  items: itemsProp, value, onChange, className,
-}) => {
-  const items : Item[] = [];
-  itemsProp.forEach((item) => {
-    if (item?.value === value) {
-      items.unshift(item);
+const sortWithSelectedFirst = (projects: Project[], selectedId: number | null) => {
+  const sorted : Project[] = [];
+  projects.forEach((project) => {
+    if (project.id === selectedId) {
+      sorted.unshift(project);
       return;
     }
 
-    items.push(item);
+    sorted.push(project);
   });
 
+  return sorted;
+};
+
+const ProjectSelect : React.FC<Props> = ({
+  className, projects, activeProjectId, setActiveProject = () => {}, createNewProject = () => {},
+}) => {
   return (
     <div className={className}>
-      <FormControl fullWidth>
-        <Select
-          // open
-          disabled={!Array.isArray(items) || items.length === 0}
-          value={value}
-          onChange={(e) => {
-            const val = e?.target?.value;
-            if (val !== undefined && val !== null) {
-              onChange((val as unknown) as number);
-            }
-          }}
-          inputProps={{ 'aria-label': 'Without label' }}
-          MenuProps={{
-            anchorOrigin: { horizontal: 'left', vertical: 'top' },
-            marginThreshold: 0,
-          }}
-        >
-          {
-            items.map((item) => (
-              <MenuItem key={item?.value} value={item?.value}>{item?.label}</MenuItem>
-            ))
-          }
-          <ListSubheader>
-            <div className="menu-item-extra">
-              <Button
-                onClick={() => {
-                  // eslint-disable-next-line no-console
-                  console.log('TODO: Should create new project!');
-                }}
-                className="button-new"
-                disabled={false}
-              >
-                New Project
-              </Button>
-            </div>
-          </ListSubheader>
-        </Select>
-      </FormControl>
+      <CustomSelect
+        value={activeProjectId ?? ''}
+        onChange={(value) => { setActiveProject(value); }}
+      >
+        {
+          sortWithSelectedFirst(projects, activeProjectId).map((project) => (
+            <MenuItem key={project?.id} value={project?.id}>{ project?.name }</MenuItem>
+          ))
+        }
+        <ListSubheader>
+          <NewProjectButton
+            onClick={createNewProject}
+          />
+        </ListSubheader>
+      </CustomSelect>
     </div>
   );
 };
+
+type CustomSelectProps = {
+  value: number | string;
+  onChange: (value: number) => unknown;
+};
+
+const CustomSelect : React.FC<CustomSelectProps> = ({
+  value, onChange, children,
+}) => (
+  <FormControl fullWidth>
+    <Select
+      value={value}
+      onChange={(e) => {
+        const val = e?.target?.value;
+        if (val !== undefined && val !== null) {
+          onChange((val as unknown) as number);
+        }
+      }}
+      inputProps={{ 'aria-label': 'Without label' }}
+      MenuProps={{
+        // anchorOrigin: { horizontal: 'left', vertical: 'top' },
+        marginThreshold: 0,
+      }}
+    >
+      {children}
+    </Select>
+  </FormControl>
+);
+
+const NewProjectButton = ({ onClick } : { onClick: () => unknown }) => (
+  <div className="menu-item-extra">
+    <Button
+      onClick={onClick}
+      className="button-new"
+      disabled={false}
+    >
+      New Project
+    </Button>
+  </div>
+);
 
 export default styled(ProjectSelect)`
   padding: 4px;
