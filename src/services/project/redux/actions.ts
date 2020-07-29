@@ -1,6 +1,5 @@
 import { SourceFile } from '../types';
 
-// Action Creators
 export const setFileList = (files: SourceFile[]) => ({
   type: 'project/SET_FILES',
   payload: files,
@@ -26,9 +25,15 @@ export const patchFile = (id: number, patch: Partial<SourceFile>) => ({
   payload: { id, patch },
 } as const);
 
+export const setActiveProjectId = (id: number) => ({
+  type: 'project/SET_ACTIVE_PROJECT',
+  payload: id,
+} as const);
+
 export type ProjectAction =
   | ReturnType<typeof setFileList>
   | ReturnType<typeof appendFile>
   | ReturnType<typeof removeFile>
   | ReturnType<typeof setActiveFileId>
   | ReturnType<typeof patchFile>
+  | ReturnType<typeof setActiveProjectId>

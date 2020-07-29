@@ -1,4 +1,4 @@
-import ProjectState from './projectState';
+import { ProjectState } from './projectState';
 import { ProjectAction } from './actions';
 
 export const INITIAL_STATE: ProjectState = {
@@ -45,6 +45,11 @@ const reducer = (state = INITIAL_STATE, action: ProjectAction): ProjectState => 
 
           return s;
         }),
+      };
+    case 'project/SET_ACTIVE_PROJECT':
+      return {
+        ...state,
+        activeProjectId: action.payload,
       };
     default:
       return state;

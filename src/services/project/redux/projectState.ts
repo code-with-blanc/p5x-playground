@@ -1,8 +1,8 @@
 import { SourceFile, Project } from '../types';
 
-export default interface ProjectState {
+export type ProjectState = {
   projects: Project[];
   activeProjectId: number | null;
   sourceFiles: SourceFile[];
   activeSourceFileId: number | null;
-}
+};

@@ -4,6 +4,7 @@ import * as selectors from './redux/selectors';
 
 const actions = {
   setActiveFileId: storeActions.setActiveFileId,
+  setActiveProjectId: storeActions.setActiveProjectId,
   ...sagaActions,
 };
 

@@ -11,7 +11,9 @@ import { RootState } from '../../../setup/redux/rootReducer';
 
 function stateWithFiles(files: SourceFile[]) : Partial<RootState> {
   return {
-    sourceFileStore: {
+    projects: {
+      projects: [],
+      activeProjectId: null,
       sourceFiles: files,
       activeSourceFileId: 0,
     },

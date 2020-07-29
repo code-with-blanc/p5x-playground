@@ -4,9 +4,9 @@ import SourceFileList from './sourceFileList';
 
 import { actions } from '../../../../services/project';
 
-const mapStateToProps = ({ sourceFileStore }) => ({
-  sourceFiles: sourceFileStore.sourceFiles,
-  selectedSourceFileId: sourceFileStore.activeSourceFileId,
+const mapStateToProps = ({ projects }) => ({
+  sourceFiles: projects.sourceFiles,
+  selectedSourceFileId: projects.activeSourceFileId,
 });
 
 const mapDispatchToProps = (dispatch) => ({

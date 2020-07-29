@@ -1,7 +1,11 @@
 import { connect } from 'react-redux';
+import { Dispatch, Action } from 'redux';
+
+import { RootState } from '../../../../setup/redux/rootReducer';
+import { Project } from '../../../../services/project/types';
+import { actions } from '../../../../services/project';
 
 import ProjectSelect from './projectSelect';
-import { Project } from '../../../../services/project/types';
 
 const someProjs : Project[] = [
   { id: 1, name: 'Project 1', fileIds: [] },
@@ -10,14 +14,14 @@ const someProjs : Project[] = [
   { id: 4, name: 'Project 4', fileIds: [] },
 ];
 
-const mapStateToProps = () => ({
+const mapStateToProps = ({ projects } : RootState) => ({
   projects: someProjs,
-  activeProjectId: null,
+  activeProjectId: projects.activeProjectId,
 });
 
-const mapDispatchToProps = () => ({
-  setActiveProject: (id : number) => { console.log(`Set project to id ${id}`); },
-  createNewProject: () => { console.log('Should create new project'); },
+const mapDispatchToProps = (dispatch: Dispatch<Action<unknown>>) => ({
+  setActiveProject: (id : number) => dispatch(actions.setActiveProjectId(id)),
+  createNewProject: () => { console.log('Should create project'); },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectSelect);
