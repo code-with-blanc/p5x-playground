@@ -5,14 +5,13 @@ export const setFileList = (files: SourceFile[]) => ({
   payload: files,
 } as const);
 
-export const appendFile = (file: SourceFile) => ({
-  type: 'project/APPEND_FILE',
-  payload: file,
+export const createFile = () => ({
+  type: 'project/CREATE_FILE',
 } as const);
 
-export const removeFile = (id: number) => ({
-  type: 'project/REMOVE_FILE',
-  payload: id,
+export const deleteFile = (id: number) => ({
+  type: 'project/DELETE_FILE',
+  payload: { id },
 } as const);
 
 export const setActiveFileId = (id: number) => ({
@@ -32,8 +31,8 @@ export const setActiveProjectId = (id: number) => ({
 
 export type ProjectAction =
   | ReturnType<typeof setFileList>
-  | ReturnType<typeof appendFile>
-  | ReturnType<typeof removeFile>
+  | ReturnType<typeof createFile>
+  | ReturnType<typeof deleteFile>
   | ReturnType<typeof setActiveFileId>
   | ReturnType<typeof patchFile>
   | ReturnType<typeof setActiveProjectId>

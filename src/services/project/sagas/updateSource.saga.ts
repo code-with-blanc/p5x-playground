@@ -4,13 +4,12 @@ import * as storeActions from '../redux/actions';
 import * as selectors from '../redux/selectors';
 
 import * as actions from './actions';
-import type { SagaActionType } from './actions';
 import ProjectService from '../projectService';
 
 
 export function* watchUpdateSource() {
   while (true) {
-    const action = yield take('project/sagas/UPDATE_SOURCE' as SagaActionType);
+    const action = yield take(actions.updateSource(0, '').type);
     yield updateSource(action);
   }
 }

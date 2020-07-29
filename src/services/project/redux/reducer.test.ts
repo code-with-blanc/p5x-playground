@@ -3,7 +3,7 @@ import deepFreeze from 'deep-freeze';
 
 import reducer from './reducer';
 import * as actions from './actions';
-import ProjectState from './projectState';
+import { ProjectState } from './projectState';
 import { SourceFile } from '../types';
 
 describe('Project service reducer', () => {
@@ -20,16 +20,15 @@ describe('Project service reducer', () => {
     expect(result.sourceFiles).toEqual(filesToSet);
   });
 
-  it('append file', () => {
+  it('create file', () => {
     const initialFiles = [sourceFileWithId(1), sourceFileWithId(2)];
-    const fileToAppend = new SourceFile(100, 'File to append', '');
 
     const result = reducer(
       stateWithFileList(initialFiles),
-      actions.appendFile(fileToAppend),
+      actions.createFile(),
     );
 
-    expect(result.sourceFiles).toEqual([...initialFiles, fileToAppend]);
+    expect(result.sourceFiles.length).toEqual(3);
   });
   
   describe('remove file', () => {
@@ -40,7 +39,7 @@ describe('Project service reducer', () => {
 
       const result = reducer(
         stateWithFileList([file1, file2, file3]),
-        actions.removeFile(20),
+        actions.deleteFile(20),
       );
 
       expect(result.sourceFiles).toEqual([file1, file3]);
@@ -52,7 +51,7 @@ describe('Project service reducer', () => {
 
       const result = reducer(
         stateWithFileList([file1, file2, file3]),
-        actions.removeFile(12345),
+        actions.deleteFile(12345),
       );
 
       expect(result.sourceFiles).toEqual([file1, file2, file3]);

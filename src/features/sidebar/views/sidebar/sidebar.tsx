@@ -10,6 +10,13 @@ import Console from '../../../console';
 import SourceFileList from '../sourceFileList';
 import ProjectSelect from '../projectSelect';
 
+type SidebarProps = {
+  className?: string;
+  activeSourceFileId: number | null;
+  addSourceFile: () => void;
+  removeSourceFile: (id: number) => void;
+}
+
 const Sidebar : React.FC<SidebarProps> = ({
   className, addSourceFile, removeSourceFile, activeSourceFileId,
 }) => {
@@ -33,7 +40,11 @@ const Sidebar : React.FC<SidebarProps> = ({
       <div className="button-delete">
         <Button
           color="Red"
-          onClick={() => removeSourceFile(activeSourceFileId)}
+          onClick={() => {
+            if (activeSourceFileId) {
+              removeSourceFile(activeSourceFileId);
+            }
+          }}
         >
           <IconDelete />
         </Button>
@@ -87,12 +98,5 @@ const Container = styled.div`
     overflow-y: auto;
   }
 `;
-
-interface SidebarProps {
-  className: string;
-  activeSourceFileId: number;
-  addSourceFile: () => void;
-  removeSourceFile: (id: number) => void;
-}
 
 export default Sidebar;

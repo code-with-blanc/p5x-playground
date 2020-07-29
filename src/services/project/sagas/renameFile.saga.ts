@@ -1,7 +1,6 @@
 import {
   take, select, put,
 } from 'redux-saga/effects';
-import type { SagaActionType } from './actions';
 
 import * as actions from './actions';
 import * as storeActions from '../redux/actions';
@@ -10,7 +9,7 @@ import ProjectService from '../projectService';
 
 export function* watchRenameFile() {
   while (true) {
-    const action = yield take('project/sagas/RENAME_FILE' as SagaActionType);
+    const action = yield take(actions.renameFile(0, '').type);
     yield renameFile(action);
   }
 }

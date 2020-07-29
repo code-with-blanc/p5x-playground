@@ -1,5 +1,6 @@
 import { ProjectState } from './projectState';
 import { ProjectAction } from './actions';
+import { SourceFile } from '../types';
 
 export const INITIAL_STATE: ProjectState = {
   projects: [],
@@ -16,15 +17,15 @@ const reducer = (state = INITIAL_STATE, action: ProjectAction): ProjectState => 
         ...state,
         sourceFiles: action.payload,
       };
-    case 'project/APPEND_FILE':
+    case 'project/CREATE_FILE':
       return {
         ...state,
-        sourceFiles: [...state.sourceFiles, action.payload],
+        sourceFiles: [...state.sourceFiles, createSource(state.sourceFiles)],
       };
-    case 'project/REMOVE_FILE':
+    case 'project/DELETE_FILE':
       return {
         ...state,
-        sourceFiles: state.sourceFiles.filter((f) => f.id !== action.payload),
+        sourceFiles: state.sourceFiles.filter((f) => f.id !== action.payload.id),
       };
     case 'project/SET_ACTIVE_FILE':
       return {
@@ -54,6 +55,16 @@ const reducer = (state = INITIAL_STATE, action: ProjectAction): ProjectState => 
     default:
       return state;
   }
+};
+
+const createSource = (existingFiles: SourceFile[]) => {
+  const maxId = existingFiles.reduce((max, s) => (s.id > max ? s.id : max), 0);
+
+  return {
+    id: maxId + 1,
+    name: `New File (${maxId + 1})`,
+    code: '',
+  } as SourceFile;
 };
 
 export default reducer;

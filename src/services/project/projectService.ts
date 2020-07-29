@@ -6,16 +6,6 @@ import defaultFiles from './defaultSources.js';
 const LS_STORAGE = 'sourceFiles';
 
 class ProjectService {
-  public createNewSourceFile(existingSources : SourceFile[]) : SourceFile {
-    const maxId = existingSources.reduce((max, s) => (s.id > max ? s.id : max), 0);
-
-    return {
-      id: maxId + 1,
-      name: `New File (${maxId + 1})`,
-      code: '',
-    };
-  }
-
   public load() : SourceFile [] {
     try {
       // eslint-disable-next-line no-undef
