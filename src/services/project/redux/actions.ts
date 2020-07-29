@@ -1,8 +1,8 @@
-import { SourceFile } from '../types';
+import { SourceFile, Project } from '../types';
 
 export const setFileList = (files: SourceFile[]) => ({
   type: 'project/SET_FILES',
-  payload: files,
+  payload: { files },
 } as const);
 
 export const createFile = () => ({
@@ -16,7 +16,7 @@ export const deleteFile = (id: number) => ({
 
 export const setActiveFileId = (id: number) => ({
   type: 'project/SET_ACTIVE_FILE',
-  payload: id,
+  payload: { id },
 } as const);
 
 export const patchFile = (id: number, patch: Partial<SourceFile>) => ({
@@ -26,7 +26,12 @@ export const patchFile = (id: number, patch: Partial<SourceFile>) => ({
 
 export const setActiveProjectId = (id: number) => ({
   type: 'project/SET_ACTIVE_PROJECT',
-  payload: id,
+  payload: { id },
+} as const);
+
+export const setProjectList = (projects: Project[]) => ({
+  type: 'project/SET_PROJECT_LIST',
+  payload: { projects },
 } as const);
 
 export type ProjectAction =
@@ -36,3 +41,4 @@ export type ProjectAction =
   | ReturnType<typeof setActiveFileId>
   | ReturnType<typeof patchFile>
   | ReturnType<typeof setActiveProjectId>
+  | ReturnType<typeof setProjectList>

@@ -15,7 +15,7 @@ const reducer = (state = INITIAL_STATE, action: ProjectAction): ProjectState => 
     case 'project/SET_FILES':
       return {
         ...state,
-        sourceFiles: action.payload,
+        sourceFiles: action.payload.files,
       };
     case 'project/CREATE_FILE':
       return {
@@ -30,7 +30,7 @@ const reducer = (state = INITIAL_STATE, action: ProjectAction): ProjectState => 
     case 'project/SET_ACTIVE_FILE':
       return {
         ...state,
-        activeSourceFileId: action.payload as number,
+        activeSourceFileId: action.payload.id,
       };
     case 'project/PATCH_FILE':
       return {
@@ -50,7 +50,12 @@ const reducer = (state = INITIAL_STATE, action: ProjectAction): ProjectState => 
     case 'project/SET_ACTIVE_PROJECT':
       return {
         ...state,
-        activeProjectId: action.payload,
+        activeProjectId: action.payload.id,
+      };
+    case 'project/SET_PROJECT_LIST':
+      return {
+        ...state,
+        projects: action.payload.projects,
       };
     default:
       return state;
